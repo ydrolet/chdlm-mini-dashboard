@@ -11,6 +11,7 @@ nicegui = "^1.4.35"
 google-api-python-client = "^2.141.0"
 google-auth-httplib2 = "^0.2.0"
 google-auth-oauthlib = "^1.2.1"
+pydantic-settings = "^2.4.0"
 
 [build-system]
 requires = ["poetry-core"]
