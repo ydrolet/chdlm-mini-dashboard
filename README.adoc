@@ -1,0 +1,8 @@
+== Use OAuth refresh token to have a service account
+https://justin.poehnelt.com/posts/google-user-credentials-as-application-default/
+
+== Execute Functions with the Apps Script API
+https://developers.google.com/apps-script/api/how-tos/execute
+
+== Python quickstart for authentication and authorization flow on Google Workspace API
+https://developers.google.com/apps-script/api/quickstart/python
