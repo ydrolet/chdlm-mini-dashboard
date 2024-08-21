@@ -5,7 +5,8 @@ from pydantic import Field, field_validator, model_validator
 from pydantic_extra_types.pendulum_dt import Duration, DateTime
 from typing_extensions import Self
 
-from chdlm_mini_dashboard.models.common import CustomBaseModel
+from chdlm_mini_dashboard.models.common import CustomBaseModel, RootModelDict
+
 
 class ExecutionTime(CustomBaseModel):
     spreadsheet_loading: Duration
@@ -41,12 +42,13 @@ class AccomplishedTask(CustomBaseModel):
     hours_spent: float
     note: str
 
+type Involvement = dict[int, dict[Annotated[int, Field(ge=1, le=12)], dict[str, list[AccomplishedTask]]]]
+
 class Resident(CustomBaseModel):
     first_name: str
     last_name: str
     address: Address | None = None
     member_status: MemberStatus
-    involvement: dict[int, dict[Annotated[int, Field(ge=1, le=12)], dict[str, list[AccomplishedTask]]]]
 
     @model_validator(mode='after')
     def check_former_member_address(self) -> Self:
@@ -54,7 +56,13 @@ class Resident(CustomBaseModel):
             raise ValueError('Address must be null for former members')
         return self
 
-class ScriptResponse(CustomBaseModel):
-    data: dict[str, Resident] | None = None
+class Member(Resident):
+    involvement: Involvement
+
+Residents = RootModelDict[Resident]
+Members = RootModelDict[Member]
+
+class ExtractedInvolvementData(CustomBaseModel):
+    data: Members | None = None
     log: list[LogEntry]
     execution_time: ExecutionTime

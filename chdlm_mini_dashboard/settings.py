@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    script_id: str
+    chdlm_involvement_data_extraction_script_id: str
     token_file_path: FilePath
 
     model_config = SettingsConfigDict(
