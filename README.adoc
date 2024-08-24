@@ -1,8 +1,11 @@
-== Use OAuth refresh token to have a service account
-https://justin.poehnelt.com/posts/google-user-credentials-as-application-default/
+== Python quickstart for authentication and authorization flow on Google Workspace API
+https://developers.google.com/apps-script/api/quickstart/python
 
 == Execute Functions with the Apps Script API
 https://developers.google.com/apps-script/api/how-tos/execute
 
-== Python quickstart for authentication and authorization flow on Google Workspace API
-https://developers.google.com/apps-script/api/quickstart/python
+== Use OAuth refresh token to have a service account
+https://justin.poehnelt.com/posts/google-user-credentials-as-application-default/
+```
+gcloud auth application-default login --client-id-file="client_id_file.json" --scopes="https://www.googleapis.com/auth/spreadsheets"
+```
