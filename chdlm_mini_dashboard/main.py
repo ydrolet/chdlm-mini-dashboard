@@ -1,6 +1,10 @@
+import logging
+
 from chdlm_mini_dashboard.clients.google_api import GoogleApiClient
 from chdlm_mini_dashboard.managers.chdlm_involvement import ChdlmInvolvementManager
 from chdlm_mini_dashboard.settings import settings
+
+logging.basicConfig(level=logging.INFO)
 
 google_api_client = GoogleApiClient(settings.token_file_path, ["https://www.googleapis.com/auth/spreadsheets"])
 chdlm_involvement_manager = ChdlmInvolvementManager(
