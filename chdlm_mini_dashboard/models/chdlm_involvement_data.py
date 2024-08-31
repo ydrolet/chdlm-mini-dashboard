@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
+import pendulum
 from pydantic import field_validator, model_validator, EmailStr
 from pydantic_extra_types.pendulum_dt import Duration, DateTime
 from typing_extensions import Self
@@ -49,26 +50,50 @@ class AccomplishedTask(CustomBaseModel):
     note: str
 
 
+@dataclass(frozen=True)
+class Period:
+    year: int
+    month: int
+
+    def __repr__(self):
+        return f"{self.year}-{self.month:02}"
+
+    def __str__(self):
+        return f"{get_month_name(int(self.month))} {self.year}"
+
+
 class CommitteeInvolvement(RootModelStrDict[list[AccomplishedTask]]):
     @property
-    def total_involvement_hours(self) -> dict[str, float]:
+    def total_hours_per_committee(self) -> dict[str, float]:
         return {committee_name: sum(task.hours_spent for task in tasks)
                 for committee_name, tasks in self.root.items()}
+
+    @property
+    def total_hours(self) -> float:
+        return sum(self.total_hours_per_committee.values())
 
 
 class MonthlyInvolvement(RootModelIntDict[CommitteeInvolvement]):
     @property
-    def total_involvement_hours(self) -> dict[int, float]:
+    def total_hours_per_month(self) -> dict[int, float]:
         return {
-            month: sum(committee_hours for committee_hours in committee_involvement.total_involvement_hours.values())
+            month: sum(committee_hours for committee_hours in committee_involvement.total_hours_per_committee.values())
             for month, committee_involvement in self.root.items()}
+
+    @property
+    def total_hours(self) -> float:
+        return sum(self.total_hours_per_month.values())
 
 
 class YearlyInvolvement(RootModelIntDict[MonthlyInvolvement]):
     @property
-    def total_involvement_hours(self) -> dict[int, float]:
-        return {year: sum(month_hours for month_hours in monthly_involvement.total_involvement_hours.values())
+    def total_hours_per_year(self) -> dict[int, float]:
+        return {year: sum(month_hours for month_hours in monthly_involvement.total_hours_per_month.values())
                 for year, monthly_involvement in self.root.items()}
+
+    @property
+    def total_hours(self) -> float:
+        return sum(self.total_hours_per_year.values())
 
 
 class Resident(CustomBaseModel):
@@ -92,6 +117,13 @@ class Resident(CustomBaseModel):
 class Member(Resident):
     involvement: YearlyInvolvement
 
+    def get_involvement_slice(self, previous_months_count: int) -> dict[Period, CommitteeInvolvement | None]:
+        interval = pendulum.interval(pendulum.now().subtract(months=previous_months_count), pendulum.now())
+        periods = [Period(year=date.year, month=date.month) for date in interval.range('months')]
+        periods = list(reversed(periods[:-1]))
+
+        return {period: self.involvement.get(period.year, {}).get(period.month, None) for period in periods}
+
 
 Residents = RootModelStrDict[Resident]
 Members = RootModelStrDict[Member]
@@ -101,13 +133,3 @@ class ExtractedInvolvementData(CustomBaseModel):
     data: Members | None = None
     log: list[LogEntry]
     execution_time: ExecutionTime
-
-
-@dataclass
-class Period:
-    year: int
-    month: int
-
-    @property
-    def month_name(self) -> str:
-        return f"{get_month_name(int(self.month))} {self.year}"

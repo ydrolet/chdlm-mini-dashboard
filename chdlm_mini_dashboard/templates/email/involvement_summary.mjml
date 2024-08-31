@@ -61,10 +61,10 @@
                 <mj-text align="center" font-size="20px" font-weight="bold" padding-top="0">
                     Participation de {{ member.full_name }}<br/>
                     au courant
-                    {% if previous_months_count == 1 %}
+                    {% if len(monthly_involvement) == 1 %}
                     du dernier
                     {% else %}
-                    des {{ previous_months_count }} derniers
+                    des {{ len(monthly_involvement) }} derniers
                     {% endif %}
                     mois
                 </mj-text>
@@ -78,15 +78,14 @@
             </mj-column>
         </mj-section>
 
-        {% for period in periods_to_show %}
+        {% for period, month_involvement in monthly_involvement.items() %}
         <mj-section padding-top="0" padding-bottom="14px">
             <mj-column>
                 <mj-text mj-class="month-title">
-                    {{ period.month_name }}
+                    {{ period }}
                 </mj-text>
 
-                {% if period.year in member.involvement and period.month in member.involvement[period.year] %}
-                {% set month_involvement = member.involvement[period.year][period.month] %}
+                {% if month_involvement is not none %}
                 {% for committee_name, tasks in month_involvement.items() %}
                 <mj-text mj-class="committee-title">
                     {{ committee_name }}
@@ -106,7 +105,7 @@
                     <tr class="task-row hours-table-layout">
                         <td class="hours-table-layout-left-column"/>
                         <td class="hours-table-layout-right-column task-row-total">
-                            {{ month_involvement.total_involvement_hours[committee_name] }} h
+                            {{ month_involvement.total_hours_per_committee[committee_name] }} h
                         </td>
                     </tr>
                 </mj-table>
@@ -115,10 +114,10 @@
                 <mj-table mj-class="hours-table month-total-hours">
                     <tr class="total-month-hours hours-table-layout">
                         <td class="hours-table-layout-left-column">
-                            Total pour {{ period.month_name }}
+                            Total pour {{ period }}
                         </td>
                         <td class="hours-table-layout-right-column">
-                            {{ member.involvement[period.year].total_involvement_hours[period.month] }} h
+                            {{ month_involvement.total_hours }} h
                         </td>
                     </tr>
                 </mj-table>

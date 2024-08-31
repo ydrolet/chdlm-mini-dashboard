@@ -37,24 +37,16 @@ class ChdlmInvolvementManager:
         return extracted_residents_list
 
     def send_involvement_summary_email(self, member: Member, previous_months_count: int = 3):
-        member_email_address = member.email_address if settings.debug_email_address is None \
-            else settings.debug_email_address
-
-        interval = pendulum.interval(pendulum.now().subtract(months=previous_months_count), pendulum.now())
-        periods_to_show = [Period(year=date.year, month=date.month) for date in interval.range('months')]
-        periods_to_show = list(reversed(periods_to_show[:-1]))
-
         rendered_html = render_mjml_template_to_html(
             Path("chdlm_mini_dashboard/templates/email/involvement_summary.mjml"),
             {
                 "member": member,
-                "periods_to_show": periods_to_show,
-                "previous_months_count": previous_months_count
+                "monthly_involvement": member.get_involvement_slice(previous_months_count),
             }
         )
 
         self.google_api_client.send_email(
             f"[CHDLM] Données de participation pour {member.full_name}",
             rendered_html,
-            member_email_address
+            settings.debug_email_address or member.email_address
         )
