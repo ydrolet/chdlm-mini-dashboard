@@ -1,3 +1,4 @@
+import calendar
 import hashlib
 import logging
 import pickle
@@ -46,3 +47,6 @@ def persistent_memoize(ttl: Duration):
         return wrapper
 
     return decorator
+
+def get_month_name(month_number: int) -> str:
+    return calendar.month_name[month_number]

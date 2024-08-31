@@ -1,9 +1,13 @@
+import base64
+import logging
 import os
 import socket
+from email.mime.text import MIMEText
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from pydantic import FilePath
 
 
@@ -46,3 +50,28 @@ class GoogleApiClient:
             return response
         finally:
             socket.setdefaulttimeout(60)
+
+    def send_email(self,
+                   subject: str,
+                   html_content: str,
+                   recipient_email_address: str,
+                   ):
+        # TODO: Add quota check (https://developers.google.com/gmail/api/reference/quota)
+        try:
+            service = build("gmail", "v1", credentials=self.credentials)
+            message = MIMEText(html_content, 'html')
+
+            message["To"] = recipient_email_address
+            message["Subject"] = subject
+
+            result = (
+                service.users()
+                .messages()
+                .send(userId="me", body={"raw": base64.urlsafe_b64encode(message.as_bytes()).decode()})
+                .execute()
+            )
+        except HttpError as error:
+            logging.error(f"An error occurred when sending email to {recipient_email_address}: {error}")
+            result = None
+
+        return result

@@ -355,6 +355,26 @@ files = [
 ]
 
 [[package]]
+name = "dnspython"
+version = "2.6.1"
+description = "DNS toolkit"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "dnspython-2.6.1-py3-none-any.whl", hash = "sha256:5ef3b9680161f6fa89daf8ad451b5f1a33b18ae8a1c6778cdf4b43f08c0a6e50"},
+    {file = "dnspython-2.6.1.tar.gz", hash = "sha256:e8f0f9c23a7b7cb99ded64e6c3a6f3e701d78f50c55e002b839dea7225cff7cc"},
+]
+
+[package.extras]
+dev = ["black (>=23.1.0)", "coverage (>=7.0)", "flake8 (>=7)", "mypy (>=1.8)", "pylint (>=3)", "pytest (>=7.4)", "pytest-cov (>=4.1.0)", "sphinx (>=7.2.0)", "twine (>=4.0.0)", "wheel (>=0.42.0)"]
+dnssec = ["cryptography (>=41)"]
+doh = ["h2 (>=4.1.0)", "httpcore (>=1.0.0)", "httpx (>=0.26.0)"]
+doq = ["aioquic (>=0.9.25)"]
+idna = ["idna (>=3.6)"]
+trio = ["trio (>=0.23)"]
+wmi = ["wmi (>=1.5.1)"]
+
+[[package]]
 name = "docutils"
 version = "0.21.2"
 description = "Docutils -- Python Documentation Utilities"
@@ -364,6 +384,21 @@ files = [
     {file = "docutils-0.21.2-py3-none-any.whl", hash = "sha256:dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2"},
     {file = "docutils-0.21.2.tar.gz", hash = "sha256:3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f"},
 ]
+
+[[package]]
+name = "email-validator"
+version = "2.2.0"
+description = "A robust email address syntax and deliverability validation library."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "email_validator-2.2.0-py3-none-any.whl", hash = "sha256:561977c2d73ce3611850a06fa56b414621e0c8faa9d66f2611407d87465da631"},
+    {file = "email_validator-2.2.0.tar.gz", hash = "sha256:cb690f344c617a714f22e66ae771445a1ceb46821152df8e165c5f9a364582b7"},
+]
+
+[package.dependencies]
+dnspython = ">=2.0.0"
+idna = ">=2.0.0"
 
 [[package]]
 name = "fastapi"
@@ -836,6 +871,21 @@ files = [
     {file = "MarkupSafe-2.1.5-cp39-cp39-win32.whl", hash = "sha256:00e046b6dd71aa03a41079792f8473dc494d564611a8f89bbbd7cb93295ebdcf"},
     {file = "MarkupSafe-2.1.5-cp39-cp39-win_amd64.whl", hash = "sha256:fa173ec60341d6bb97a89f5ea19c85c5643c1e7dedebc22f5181eb73573142c5"},
     {file = "MarkupSafe-2.1.5.tar.gz", hash = "sha256:d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b"},
+]
+
+[[package]]
+name = "mjml-python"
+version = "1.3.3"
+description = "A Python wrapper for MRML (Rust port of MJML)."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mjml_python-1.3.3-cp37-abi3-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:3583a6d7cbc66edfd2e8a71a85f2452ee10f028ba660b1c61e7acd90cfe0e4c4"},
+    {file = "mjml_python-1.3.3-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4e8193ed7ac803bfc83b4452dc3dbf8adb017dbf3297dbcba232b4ee7011cb73"},
+    {file = "mjml_python-1.3.3-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c4fa9a4eca964889a3d3816750cba92a91abc852f17d8fd9cc3c63765abaf970"},
+    {file = "mjml_python-1.3.3-cp37-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:24083860fd3d6d78bff37d73f1fcf8f1d60c2eeb348bea151c262e60e2d68d95"},
+    {file = "mjml_python-1.3.3-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:99c34ce7138d2400ec889d5fc263add31a9b60ce9673790f4c6a2db4563b0dcb"},
+    {file = "mjml_python-1.3.3-cp37-abi3-win_amd64.whl", hash = "sha256:321ad94a7ef39902d69bce4f090ba5b4c1a9277ee759bdd3ce0d56bc6404d26d"},
 ]
 
 [[package]]
@@ -2124,4 +2174,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "01b1e870f65c76367833465e985b6def102b62029960d01d56aff91720ba64df"
+content-hash = "d56499fead73807c888a64d4f50643686e97c69402d7bead6dbc65bb4409ef65"
