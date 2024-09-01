@@ -37,11 +37,15 @@ class ChdlmInvolvementManager:
         return extracted_residents_list
 
     def send_involvement_summary_email(self, member: Member, previous_months_count: int = 3):
+        monthly_involvement = member.get_involvement_slice(previous_months_count)
+        grand_total = sum(month.total_hours for month in monthly_involvement.values() if month is not None)
+
         rendered_html = render_mjml_template_to_html(
             Path("chdlm_mini_dashboard/templates/email/involvement_summary.mjml"),
             {
                 "member": member,
-                "monthly_involvement": member.get_involvement_slice(previous_months_count),
+                "monthly_involvement": monthly_involvement,
+                "grand_total": grand_total
             }
         )
 

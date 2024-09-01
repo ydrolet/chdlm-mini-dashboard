@@ -8,6 +8,7 @@
             <mj-class name="committee-title" font-weight="bold" padding-bottom="0"/>
             <mj-class name="hours-table" padding-left="55px" table-layout="fixed" padding-top="6px"/>
             <mj-class name="month-total-hours" font-size="14px" padding-top="10px"/>
+            <mj-class name="grand-total-hours" font-size="21px"/>
             <mj-class name="no-data" align="center"/>
         </mj-attributes>
         <mj-style inline="inline">
@@ -33,6 +34,10 @@
 
             .total-month-hours {
                 background-color: #F1F3C2;
+            }
+
+            .total-month-hours-cell {
+                padding: 4px 0;
             }
         </mj-style>
     </mj-head>
@@ -69,7 +74,8 @@
                     mois
                 </mj-text>
                 <mj-text align="center" font-size="13px" padding-top="0" padding-bottom="0">
-                    <p>Si vous constatez des erreurs dans les données, signalez-le à votre responsable de comité.</p>
+                    <p>Si vous constatez que des données ne correspondent pas à ce que vous avez réalisé réellement,
+                        contactez la/le responsable de votre comité pour qu'elle/il apporte des corrections.</p>
                     <p>Si vous constatez d'autres problèmes, ou avez des commentaires/suggestions, signalez-le à Yannick
                         (<a href="mailto:ydrolet@gmail.com">ydrolet@gmail.com</a>).
                     </p>
@@ -92,7 +98,7 @@
                 </mj-text>
                 <mj-table mj-class="hours-table">
                     {% for task in tasks %}
-                    <tr class="task-row hours-table-layout">
+                    <tr class="task-row">
                         <td class="hours-table-layout-left-column">
                             {{ task.task_name }}
                             {% if task.note != "" %}
@@ -102,7 +108,7 @@
                         <td class="hours-table-layout-right-column">{{ task.hours_spent }} h</td>
                     </tr>
                     {% endfor %}
-                    <tr class="task-row hours-table-layout">
+                    <tr class="task-row">
                         <td class="hours-table-layout-left-column"/>
                         <td class="hours-table-layout-right-column task-row-total">
                             {{ month_involvement.total_hours_per_committee[committee_name] }} h
@@ -112,11 +118,11 @@
                 {% endfor %}
 
                 <mj-table mj-class="hours-table month-total-hours">
-                    <tr class="total-month-hours hours-table-layout">
-                        <td class="hours-table-layout-left-column">
+                    <tr class="total-month-hours">
+                        <td class="hours-table-layout-left-column total-month-hours-cell">
                             Total pour {{ period }}
                         </td>
-                        <td class="hours-table-layout-right-column">
+                        <td class="hours-table-layout-right-column total-month-hours-cell">
                             {{ month_involvement.total_hours }} h
                         </td>
                     </tr>
@@ -130,5 +136,20 @@
             </mj-column>
         </mj-section>
         {% endfor %}
+
+        <mj-section padding-top="5px">
+            <mj-column>
+                <mj-table mj-class="hours-table grand-total-hours">
+                    <tr class="total-month-hours">
+                        <td class="hours-table-layout-left-column total-month-hours-cell">
+                            Grand total
+                        </td>
+                        <td class="hours-table-layout-right-column total-month-hours-cell">
+                            {{ grand_total }} h
+                        </td>
+                    </tr>
+                </mj-table>
+            </mj-column>
+        </mj-section>
     </mj-body>
 </mjml>
