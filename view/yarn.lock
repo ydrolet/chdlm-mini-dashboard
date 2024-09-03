@@ -669,7 +669,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@quasar/app-vite@npm:^2.0.0-beta.12":
+"@quasar/app-vite@npm:^2.0.0-beta.20":
   version: 2.0.0-beta.20
   resolution: "@quasar/app-vite@npm:2.0.0-beta.20"
   dependencies:
@@ -737,7 +737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@quasar/extras@npm:^1.16.4":
+"@quasar/extras@npm:^1.16.12":
   version: 1.16.12
   resolution: "@quasar/extras@npm:1.16.12"
   checksum: 10c0/663557f7e97ff52f7da66de147ec83e56667c8d7adf7dcf832fdff750f645dc26c591e45c6c35023e70ccd53a964d4e71c8009d2b9beb1b41576bfd49bd63529
@@ -1034,7 +1034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.5.9":
+"@types/node@npm:^20.12.2":
   version: 20.16.3
   resolution: "@types/node@npm:20.16.3"
   dependencies:
@@ -1078,7 +1078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^7.16.0":
+"@typescript-eslint/eslint-plugin@npm:^7.17.0":
   version: 7.18.0
   resolution: "@typescript-eslint/eslint-plugin@npm:7.18.0"
   dependencies:
@@ -1101,7 +1101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^7.16.0":
+"@typescript-eslint/parser@npm:^7.17.0":
   version: 7.18.0
   resolution: "@typescript-eslint/parser@npm:7.18.0"
   dependencies:
@@ -1595,7 +1595,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.2":
+"autoprefixer@npm:^10.4.20":
   version: 10.4.20
   resolution: "autoprefixer@npm:10.4.20"
   dependencies:
@@ -1613,7 +1613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.2.1":
+"axios@npm:^1.7.7":
   version: 1.7.7
   resolution: "axios@npm:1.7.7"
   dependencies:
@@ -1886,23 +1886,25 @@ __metadata:
   resolution: "chdlm-mini-dashboard@workspace:."
   dependencies:
     "@intlify/unplugin-vue-i18n": "npm:^2.0.0"
-    "@quasar/app-vite": "npm:^2.0.0-beta.12"
-    "@quasar/extras": "npm:^1.16.4"
-    "@types/node": "npm:^20.5.9"
-    "@typescript-eslint/eslint-plugin": "npm:^7.16.0"
-    "@typescript-eslint/parser": "npm:^7.16.0"
-    autoprefixer: "npm:^10.4.2"
-    axios: "npm:^1.2.1"
+    "@quasar/app-vite": "npm:^2.0.0-beta.20"
+    "@quasar/extras": "npm:^1.16.12"
+    "@types/node": "npm:^20.12.2"
+    "@typescript-eslint/eslint-plugin": "npm:^7.17.0"
+    "@typescript-eslint/parser": "npm:^7.17.0"
+    autoprefixer: "npm:^10.4.20"
+    axios: "npm:^1.7.7"
     eslint: "npm:^8.57.0"
-    eslint-config-prettier: "npm:^9.0.0"
-    eslint-plugin-vue: "npm:^9.0.0"
-    prettier: "npm:^3.0.3"
-    quasar: "npm:^2.16.0"
-    typescript: "npm:~5.5.3"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-plugin-vue: "npm:^9.28.0"
+    postcss: "npm:^8.4.44"
+    prettier: "npm:^3.3.3"
+    quasar: "npm:^2.16.9"
+    typescript: "npm:~5.5.4"
+    vite: "npm:^5.4.2"
     vite-plugin-checker: "npm:^0.7.2"
-    vue: "npm:^3.4.18"
-    vue-i18n: "npm:^9.2.2"
-    vue-router: "npm:^4.0.12"
+    vue: "npm:^3.4.38"
+    vue-i18n: "npm:^9.14.0"
+    vue-router: "npm:^4.4.3"
     vue-tsc: "npm:2.0.29"
   languageName: unknown
   linkType: soft
@@ -2677,7 +2679,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^9.0.0":
+"eslint-config-prettier@npm:^9.1.0":
   version: 9.1.0
   resolution: "eslint-config-prettier@npm:9.1.0"
   peerDependencies:
@@ -2688,7 +2690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^9.0.0":
+"eslint-plugin-vue@npm:^9.28.0":
   version: 9.28.0
   resolution: "eslint-plugin-vue@npm:9.28.0"
   dependencies:
@@ -4519,7 +4521,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.40, postcss@npm:^8.4.41":
+"postcss@npm:^8.4.40, postcss@npm:^8.4.41, postcss@npm:^8.4.44":
   version: 8.4.44
   resolution: "postcss@npm:8.4.44"
   dependencies:
@@ -4537,7 +4539,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.3":
+"prettier@npm:^3.3.3":
   version: 3.3.3
   resolution: "prettier@npm:3.3.3"
   bin:
@@ -4610,7 +4612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"quasar@npm:^2.16.0":
+"quasar@npm:^2.16.9":
   version: 2.16.9
   resolution: "quasar@npm:2.16.9"
   checksum: 10c0/0caa4b33388c0d758a54e4dd092c885b35cddb712a5cac5ce9fc7aa09e660bf0cc19f7bbc9bd64f3bb87bedef3b83ef68ee4d9e9e13f91419d3989d5a6d8347c
@@ -5447,7 +5449,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.5.3":
+"typescript@npm:~5.5.4":
   version: 5.5.4
   resolution: "typescript@npm:5.5.4"
   bin:
@@ -5457,7 +5459,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A~5.5.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A~5.5.4#optional!builtin<compat/typescript>":
   version: 5.5.4
   resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"
   bin:
@@ -5620,7 +5622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.3.5":
+"vite@npm:^5.3.5, vite@npm:^5.4.2":
   version: 5.4.2
   resolution: "vite@npm:5.4.2"
   dependencies:
@@ -5740,7 +5742,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-i18n@npm:^9.2.2":
+"vue-i18n@npm:^9.14.0":
   version: 9.14.0
   resolution: "vue-i18n@npm:9.14.0"
   dependencies:
@@ -5753,7 +5755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-router@npm:^4.0.12":
+"vue-router@npm:^4.4.3":
   version: 4.4.3
   resolution: "vue-router@npm:4.4.3"
   dependencies:
@@ -5779,7 +5781,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.4.18":
+"vue@npm:^3.4.38":
   version: 3.4.38
   resolution: "vue@npm:3.4.38"
   dependencies:
