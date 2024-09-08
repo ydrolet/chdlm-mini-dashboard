@@ -669,9 +669,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@quasar/app-vite@npm:^2.0.0-beta.20":
-  version: 2.0.0-beta.20
-  resolution: "@quasar/app-vite@npm:2.0.0-beta.20"
+"@quasar/app-vite@npm:^2.0.0-beta.21":
+  version: 2.0.0-beta.21
+  resolution: "@quasar/app-vite@npm:2.0.0-beta.21"
   dependencies:
     "@quasar/render-ssr-error": "npm:^1.0.2"
     "@quasar/ssl-certificate": "npm:^1.0.0"
@@ -733,7 +733,7 @@ __metadata:
       optional: true
   bin:
     quasar: bin/quasar.js
-  checksum: 10c0/604c16636e0fd613467a197b2d7e15c1bbcb52f69f3fc40963e1358b4f052a0ac6aa0c1ac2bb381b2135a58410d54c9347d81b9afc308ac65070876f5159b8cc
+  checksum: 10c0/0e5ddbc64c5186d9da68d89bf514462c8f09edfbd4819a09e2074e76b8a67921ecbd756022b698906761894a1e41b481494f9b104f6b68065b9807efae6850ae
   languageName: node
   linkType: hard
 
@@ -1886,7 +1886,7 @@ __metadata:
   resolution: "chdlm-mini-dashboard@workspace:."
   dependencies:
     "@intlify/unplugin-vue-i18n": "npm:^2.0.0"
-    "@quasar/app-vite": "npm:^2.0.0-beta.20"
+    "@quasar/app-vite": "npm:^2.0.0-beta.21"
     "@quasar/extras": "npm:^1.16.12"
     "@types/node": "npm:^20.12.2"
     "@typescript-eslint/eslint-plugin": "npm:^7.17.0"
@@ -1898,7 +1898,7 @@ __metadata:
     eslint-plugin-vue: "npm:^9.28.0"
     postcss: "npm:^8.4.44"
     prettier: "npm:^3.3.3"
-    quasar: "npm:^2.16.9"
+    quasar: "npm:^2.16.11"
     typescript: "npm:~5.5.4"
     vite: "npm:^5.4.2"
     vite-plugin-checker: "npm:^0.7.2"
@@ -4612,10 +4612,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"quasar@npm:^2.16.9":
-  version: 2.16.9
-  resolution: "quasar@npm:2.16.9"
-  checksum: 10c0/0caa4b33388c0d758a54e4dd092c885b35cddb712a5cac5ce9fc7aa09e660bf0cc19f7bbc9bd64f3bb87bedef3b83ef68ee4d9e9e13f91419d3989d5a6d8347c
+"quasar@npm:^2.16.11":
+  version: 2.16.11
+  resolution: "quasar@npm:2.16.11"
+  checksum: 10c0/d019e9784872740d2b764d18a086fd2edcc9e8b19367fd738bf321e5550417cdd117173e5260fbb911f3baf6b6c9d4235903bba0df0379c3182957d7d86c09a7
   languageName: node
   linkType: hard
 
