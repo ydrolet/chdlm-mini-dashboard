@@ -1,11 +1,11 @@
 <template>
   <q-page class="row justify-center q-pa-md">
     <div class="column items-center text-center" style="max-width: 600px">
-      <h5 class="q-my-lg">
+      <h5 class="q-my-md">
         Outil pour consulter ses heures de participation à la coopérative
       </h5>
 
-      <div class="text-body1">
+      <div>
         <p>
           Tout comme un propriétaire d'une maison individuelle ou d'un bloc d'appartements, les membres dans une
           coopérative d'habitation ont des responsabilités importantes pour s'assurer du bon fonctionnement de notre
@@ -26,7 +26,7 @@
       </div>
 
       <div class="column items-center q-mt-lg">
-        <p class="text-body1">
+        <p>
           Pour consulter vos heures de participation, sélectionnez simplement votre nom dans la liste et cliquez sur <b>Envoyer
           par courriel</b>. Vous recevrez à votre courriel personnel l'information sur votre contribution à la
           coopérative.
@@ -63,7 +63,7 @@
 
           <div class="q-py-sm" style="background-color: rgba(255, 255, 255, 0.07);">
             <span class="months-select-text">Pour les</span>
-            <q-avatar size="lg" color="dark">{{ precedingMonths }}</q-avatar>
+            <q-avatar class="q-mx-xs" size="lg" color="dark">{{ precedingMonths }}</q-avatar>
             <span class="months-select-text">derniers mois</span>
 
             <q-btn
@@ -139,10 +139,11 @@ const options = [
 
 <style scoped lang="scss">
 h5 {
-  color: $primary;
+  color: $secondary;
 }
 
 .months-select-text {
   color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
 }
 </style>
