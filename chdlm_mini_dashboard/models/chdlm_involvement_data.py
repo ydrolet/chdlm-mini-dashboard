@@ -117,8 +117,8 @@ class Resident(CustomBaseModel):
 class Member(Resident):
     involvement: YearlyInvolvement
 
-    def get_involvement_slice(self, previous_months_count: int) -> dict[Period, CommitteeInvolvement | None]:
-        interval = pendulum.interval(pendulum.now().subtract(months=previous_months_count), pendulum.now())
+    def get_involvement_slice(self, preceding_months_count: int) -> dict[Period, CommitteeInvolvement | None]:
+        interval = pendulum.interval(pendulum.now().subtract(months=preceding_months_count), pendulum.now())
         periods = [Period(year=date.year, month=date.month) for date in interval.range('months')]
         periods = list(reversed(periods[:-1]))
 

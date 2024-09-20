@@ -9,9 +9,10 @@
         <p>
           Tout comme un propriétaire d'une maison individuelle ou d'un bloc d'appartements, les membres dans une
           coopérative d'habitation ont des responsabilités importantes pour s'assurer du bon fonctionnement de notre
-          environnement. Idéalement, tous les membres devraient répondre aux besoins de la coopérative à part égale.
-          Pour atteindre cet idéal, il faut être structuré. L'enregistrement des heures de participation permettent
-          entre autres d'avoir une mesure pour aider à la répartition des tâches.
+          environnement. Si ces responsabilités ne sont pas prises en main, nous devons engager des gens qui s'en
+          occuperont, donc des coûts qui s'additionneraient aux loyers. Idéalement, tous les membres devraient répondre
+          aux besoins de la coopérative à part égale. Pour atteindre cet idéal, il faut être structuré. L'enregistrement
+          des heures de participation permettent entre autres d'avoir une mesure pour aider à la répartition des tâches.
         </p>
         <p>
           En consultant régulièrement vos heures de participation pour vous vous assurer que ce qui est enregistré
@@ -21,7 +22,7 @@
         </p>
         <p class="text-bold">
           Plus il y a de structure et de rigueur dans notre travail, plus la vie dans notre communauté sera simple et
-          agréable et plus nous pourrons mettre de l'énergie dans des projets qui nous tiennent à coeur ❤️
+          agréable et plus nous pourrons mettre de l'énergie dans des projets innovants et créatifs.
         </p>
       </div>
 

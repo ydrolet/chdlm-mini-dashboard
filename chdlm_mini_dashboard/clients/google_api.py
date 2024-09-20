@@ -20,9 +20,9 @@ class GoogleApiClient:
         else:
             raise FileNotFoundError(f'Token file "{token_file.absolute()} not found')
 
-        self._check_token()
+        self.check_token()
 
-    def _check_token(self):
+    def check_token(self):
         if not self.credentials or not self.credentials.valid:
             if self.credentials and self.credentials.expired and self.credentials.refresh_token:
                 self.credentials.refresh(Request())
@@ -30,7 +30,7 @@ class GoogleApiClient:
                     token.write(self.credentials.to_json())
 
     def execute_script_function(self, script_id: str, function_name: str):
-        self._check_token()
+        self.check_token()
 
         try:
             socket.setdefaulttimeout(300)

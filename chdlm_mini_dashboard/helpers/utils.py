@@ -1,5 +1,7 @@
+import asyncio
 import calendar
 import hashlib
+import inspect
 import logging
 import pickle
 
@@ -12,7 +14,10 @@ class CacheExpired(Exception):
 
 def persistent_memoize(ttl: Duration):
     def decorator(func):
-        def wrapper(self, *args, **kwargs):
+        if not inspect.iscoroutinefunction(func):
+            raise TypeError("The decorated function must be a coroutine")
+
+        async def wrapper(self, *args, **kwargs):
             key_attr_name = "_instance_keys"
             if not hasattr(self, key_attr_name):
                 raise AttributeError(f"The class must have an attribute \"{key_attr_name}\" to be "
@@ -30,7 +35,7 @@ def persistent_memoize(ttl: Duration):
                 if now() > modification_date + ttl:
                     raise CacheExpired
             except (FileNotFoundError, CacheExpired):
-                data = func(self, *args, **kwargs)
+                data = await func(self, *args, **kwargs)
                 modification_date = now()
 
                 with open(cache_file_path, "wb") as file:
@@ -47,6 +52,31 @@ def persistent_memoize(ttl: Duration):
         return wrapper
 
     return decorator
+
+
+def execute_one_time_and_wait(func):
+    if not inspect.iscoroutinefunction(func):
+        raise TypeError("The decorated function must be a coroutine")
+
+    lock = asyncio.Lock()
+    output = None
+
+    async def wrapper(self, *args, **kwargs):
+        nonlocal output
+
+        try:
+            if not lock.locked():
+                await lock.acquire()
+                output = await func(self, *args, **kwargs)
+            else:
+                await lock.acquire()
+
+            return output
+        finally:
+            lock.release()
+
+    return wrapper
+
 
 def get_month_name(month_number: int) -> str:
     return calendar.month_name[month_number]
