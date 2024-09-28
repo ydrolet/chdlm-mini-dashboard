@@ -12,6 +12,10 @@ class CacheExpired(Exception):
     pass
 
 
+class EmailSendingException(Exception):
+    pass
+
+
 def persistent_memoize(ttl: Duration):
     def decorator(func):
         if not inspect.iscoroutinefunction(func):
@@ -52,30 +56,6 @@ def persistent_memoize(ttl: Duration):
         return wrapper
 
     return decorator
-
-
-def execute_one_time_and_wait(func):
-    if not inspect.iscoroutinefunction(func):
-        raise TypeError("The decorated function must be a coroutine")
-
-    lock = asyncio.Lock()
-    output = None
-
-    async def wrapper(self, *args, **kwargs):
-        nonlocal output
-
-        try:
-            if not lock.locked():
-                await lock.acquire()
-                output = await func(self, *args, **kwargs)
-            else:
-                await lock.acquire()
-
-            return output
-        finally:
-            lock.release()
-
-    return wrapper
 
 
 def get_month_name(month_number: int) -> str:

@@ -10,7 +10,7 @@ from chdlm_mini_dashboard.helpers.utils import get_month_name
 from chdlm_mini_dashboard.models.common import CustomBaseModel, RootModelStrDict, RootModelIntDict
 
 
-class ExecutionTime(CustomBaseModel):
+class ExtractionDuration(CustomBaseModel):
     spreadsheet_loading: Duration
     data_extraction: Duration
 
@@ -129,7 +129,8 @@ Residents = RootModelStrDict[Resident]
 Members = RootModelStrDict[Member]
 
 
-class ExtractedInvolvementData(CustomBaseModel):
+class TimesheetsExtractedData(CustomBaseModel):
     data: Members | None = None
     log: list[LogEntry]
-    execution_time: ExecutionTime
+    extraction_duration: ExtractionDuration
+    extraction_timestamp: DateTime
