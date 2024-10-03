@@ -9,6 +9,7 @@ class Settings(BaseSettings):
 
     sendgrid_api_key: str
     from_email_address: EmailStr
+    from_name: str
     reply_to_email_address: EmailStr
     debug_recipient_email_address: EmailStr | None = None
 

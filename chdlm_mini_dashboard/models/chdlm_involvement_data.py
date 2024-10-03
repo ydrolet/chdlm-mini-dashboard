@@ -129,8 +129,18 @@ Residents = RootModelStrDict[Resident]
 Members = RootModelStrDict[Member]
 
 
+class TimesheetsInfo(CustomBaseModel):
+    all_committees_last_updated: dict[str, DateTime]
+    most_recent_update: DateTime
+
+
+class ExtractionInfo(CustomBaseModel):
+    log: list[LogEntry]
+    duration: ExtractionDuration
+    timestamp: DateTime
+
+
 class TimesheetsExtractedData(CustomBaseModel):
     data: Members | None = None
-    log: list[LogEntry]
-    extraction_duration: ExtractionDuration
-    extraction_timestamp: DateTime
+    timesheets_info: TimesheetsInfo
+    extraction_info: ExtractionInfo

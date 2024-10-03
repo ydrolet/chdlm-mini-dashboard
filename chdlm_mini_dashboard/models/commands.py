@@ -7,7 +7,7 @@ from chdlm_mini_dashboard.models.common import CustomBaseModel
 
 class SendEmail(CustomBaseModel):
     resident_name: str
-    preceding_months: Annotated[int, Field(ge=3, le=36)]
+    preceding_months: Annotated[int, Field(ge=3, le=24)]
 
 
 class SendEmailResponse(SendEmail):

@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from sendgrid import SendGridAPIClient, Mail
+from sendgrid import SendGridAPIClient, Mail, From
 from supabase import Client
 
 from chdlm_mini_dashboard.helpers.mjml import render_mjml_template_to_html
@@ -50,7 +50,7 @@ class ChdlmInvolvementManager:
 
         email = Mail(
             to_emails=settings.debug_recipient_email_address or member.email_address,
-            from_email=settings.from_email_address,
+            from_email=From(settings.from_email_address, settings.from_name),
             subject=f"[CHDLM] Données de participation pour {member.full_name}",
             html_content=rendered_html,
         )
