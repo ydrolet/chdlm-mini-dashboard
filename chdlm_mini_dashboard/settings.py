@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     reply_to_email_address: EmailStr
     debug_recipient_email_address: EmailStr | None = None
 
+    min_preceding_months: int = 3
+    max_preceding_months: int = 24
+
     model_config = SettingsConfigDict(
         env_file='.env',
     )

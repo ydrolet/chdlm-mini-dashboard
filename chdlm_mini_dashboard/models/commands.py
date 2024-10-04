@@ -3,11 +3,12 @@ from typing import Annotated
 from pydantic import Field, EmailStr
 
 from chdlm_mini_dashboard.models.common import CustomBaseModel
+from chdlm_mini_dashboard.settings import settings
 
 
 class SendEmail(CustomBaseModel):
     resident_name: str
-    preceding_months: Annotated[int, Field(ge=3, le=24)]
+    preceding_months: Annotated[int, Field(ge=settings.min_preceding_months, le=settings.max_preceding_months)]
 
 
 class SendEmailResponse(SendEmail):
