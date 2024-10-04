@@ -31,10 +31,10 @@ class ChdlmInvolvementManager:
 
     def send_involvement_summary_email(
             self,
-            resident_name: str,
+            member_full_name: str,
             preceding_months_count: int = 3,
     ) -> Member:
-        member = self.get_members_involvement_data()[resident_name]
+        member = self.get_members_involvement_data()[member_full_name]
 
         monthly_involvement = member.get_involvement_slice(preceding_months_count)
         grand_total = sum(month.total_hours for month in monthly_involvement.values() if month is not None)

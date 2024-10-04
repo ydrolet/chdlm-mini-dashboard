@@ -6,30 +6,30 @@ from fastapi import APIRouter, Depends, HTTPException
 from chdlm_mini_dashboard.dependencies import get_chdlm_involvement_manager
 from chdlm_mini_dashboard.helpers.utils import EmailSendingException
 from chdlm_mini_dashboard.managers.chdlm_involvement import ChdlmInvolvementManager
-from chdlm_mini_dashboard.models.commands import SendEmail, SendEmailResponse
+from chdlm_mini_dashboard.models.commands import SendInvolvementSummaryEmail, SendInvolvementSummaryEmailResponse
 
 router = APIRouter(prefix="/command")
 
 
-@router.post("/send-email", response_model=SendEmailResponse)
+@router.post("/send-email", response_model=SendInvolvementSummaryEmailResponse)
 async def send_email(
-        command: SendEmail,
+        command: SendInvolvementSummaryEmail,
         chdlm_involvement_manager: Annotated[ChdlmInvolvementManager, Depends(get_chdlm_involvement_manager)],
 ):
     try:
         member = chdlm_involvement_manager.send_involvement_summary_email(
-            command.resident_name,
+            command.member_full_name,
             command.preceding_months,
         )
     except KeyError as e:
-        raise HTTPException(status_code=404, detail=f"Le résident '{command.resident_name}' est introuvable.")
+        raise HTTPException(status_code=404, detail=f"Le résident '{command.member_full_name}' est introuvable.")
     except EmailSendingException:
         raise HTTPException(status_code=500, detail=f"Une erreur s'est produite lors de l'envoi du courriel.")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Une erreur inattendue s'est produite: {e}")
 
-    return SendEmailResponse(
-        resident_name=member.full_name,
+    return SendInvolvementSummaryEmailResponse(
+        member_full_name=member.full_name,
         preceding_months=command.preceding_months,
         masked_email_address=re.sub(r"(?<=.).(?=.*.@)", '*', member.email_address),
     )

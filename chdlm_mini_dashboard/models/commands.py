@@ -6,10 +6,10 @@ from chdlm_mini_dashboard.models.common import CustomBaseModel
 from chdlm_mini_dashboard.settings import settings
 
 
-class SendEmail(CustomBaseModel):
-    resident_name: str
+class SendInvolvementSummaryEmail(CustomBaseModel):
+    member_full_name: str
     preceding_months: Annotated[int, Field(ge=settings.min_preceding_months, le=settings.max_preceding_months)]
 
 
-class SendEmailResponse(SendEmail):
+class SendInvolvementSummaryEmailResponse(SendInvolvementSummaryEmail):
     masked_email_address: EmailStr
