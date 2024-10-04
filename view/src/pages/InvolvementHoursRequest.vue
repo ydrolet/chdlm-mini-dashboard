@@ -7,30 +7,19 @@
 
       <div>
         <p>
-          Tout comme un propriétaire d'une maison individuelle ou d'un bloc d'appartements, les membres dans une
-          coopérative d'habitation ont des responsabilités importantes pour s'assurer du bon fonctionnement de notre
-          environnement. Si ces responsabilités ne sont pas prises en main, nous devons engager des gens qui s'en
-          occuperont, donc des coûts qui s'additionneraient aux loyers. Idéalement, tous les membres devraient répondre
-          aux besoins de la coopérative à part égale. Pour atteindre cet idéal, il faut être structuré. L'enregistrement
-          des heures de participation permettent entre autres d'avoir une mesure pour aider à la répartition des tâches.
+          Tout comme un propriétaire d'une maison individuelle ou d'un bloc d'appartements, les membres dans une coopérative d'habitation ont des responsabilités importantes pour s'assurer du bon fonctionnement de notre environnement. La participation des membres est <b>cruciale</b>. Si ces responsabilités ne sont pas prises en main, nous devons engager des gens qui s'en occuperont, donc des coûts qui s'additionneraient aux loyers. Idéalement, tous les membres devraient répondre aux besoins de la coopérative à part égale. Pour atteindre cet idéal, il faut être structuré. L'enregistrement des heures de participation permet entre autres d'avoir une mesure pour aider à la répartition des tâches.
         </p>
         <p>
-          En consultant régulièrement vos heures de participation pour vous vous assurer que ce qui est enregistré
-          reflète bien ce que vous avez accompli réellement, vous aidez à avoir des données précieuses pour la
-          gestion/répartition globale de tâches. Merci de prendre le temps de vérifier régulièrement vos heures de
-          participation.
+          En consultant régulièrement vos heures de participation pour vous assurer que ce qui est enregistré reflète bien ce que vous avez accompli réellement, vous aidez à avoir des données précieuses pour la gestion/répartition globale de tâches. Merci de prendre le temps de vérifier régulièrement vos heures de participation.
         </p>
         <p class="text-bold">
-          Plus il y a de structure et de rigueur dans notre travail, plus la vie dans notre communauté sera simple et
-          agréable et plus nous pourrons mettre de l'énergie dans des projets innovants et créatifs.
+          Plus il y a de structure et de rigueur dans notre travail, plus la vie dans notre communauté sera simple et agréable et plus nous pourrons mettre de l'énergie dans des projets innovants et créatifs.
         </p>
       </div>
 
       <div class="column items-center q-mt-lg">
         <p>
-          Pour consulter vos heures de participation, sélectionnez simplement votre nom dans la liste et cliquez sur <b>Envoyer
-          par courriel</b>. Vous recevrez à votre courriel personnel l'information sur votre contribution à la
-          coopérative.
+          Pour consulter vos heures de participation, sélectionnez simplement votre nom dans la liste et cliquez sur <b>Envoyer par courriel</b>. Vous recevrez à votre courriel personnel l'information sur votre contribution à la coopérative.
         </p>
 
         <table>
@@ -41,9 +30,7 @@
             </td>
             <td>
               <div class="text-left q-pl-sm" style="font-size: 0.8rem;">
-                Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles
-                iront toujours à l'adresse courriel personnelle du membre. Malgré tout, <b>n'abusez pas en envoyant des
-                courriels à n'importe qui.</b>
+                Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du membre. Malgré tout, <b>n'abusez pas en envoyant des courriels à n'importe qui.</b>
               </div>
             </td>
           </tr>
