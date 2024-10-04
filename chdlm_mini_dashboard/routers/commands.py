@@ -11,7 +11,7 @@ from chdlm_mini_dashboard.models.commands import SendEmail, SendEmailResponse
 router = APIRouter(prefix="/command")
 
 
-@router.post("/send-email/", response_model=SendEmailResponse)
+@router.post("/send-email", response_model=SendEmailResponse)
 async def send_email(
         command: SendEmail,
         chdlm_involvement_manager: Annotated[ChdlmInvolvementManager, Depends(get_chdlm_involvement_manager)],

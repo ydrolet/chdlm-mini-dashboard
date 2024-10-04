@@ -1,5 +1,5 @@
 from collections.abc import MutableMapping
-from typing import TypeVar, Iterator
+from typing import TypeVar, Iterator, ItemsView, ValuesView
 
 from pydantic import BaseModel, ConfigDict, RootModel
 from pydantic.alias_generators import to_camel
@@ -30,11 +30,18 @@ class RootModelStrDict(RootModel[T], MutableMapping):
     def __delitem__(self, key: str):
         del self.root[key]
 
+    def __len__(self) -> int:
+        return len(self.root)
+
     def __iter__(self) -> Iterator[str]:
         return iter(self.root)
 
-    def __len__(self) -> int:
-        return len(self.root)
+    # Overriding the default implementation of items() and values() to return the correct types
+    def items(self) -> ItemsView[str, T]:
+        return self.root.items()
+
+    def values(self) -> ValuesView[T]:
+        return self.root.values()
 
 
 class RootModelIntDict(RootModel[T], MutableMapping):
@@ -49,8 +56,15 @@ class RootModelIntDict(RootModel[T], MutableMapping):
     def __delitem__(self, key: int):
         del self.root[key]
 
+    def __len__(self) -> int:
+        return len(self.root)
+
     def __iter__(self) -> Iterator[int]:
         return iter(self.root)
 
-    def __len__(self) -> int:
-        return len(self.root)
+    # Overriding the default implementation of items() and values() to return the correct types
+    def items(self) -> ItemsView[int, T]:
+        return self.root.items()
+
+    def values(self) -> ValuesView[T]:
+        return self.root.values()
