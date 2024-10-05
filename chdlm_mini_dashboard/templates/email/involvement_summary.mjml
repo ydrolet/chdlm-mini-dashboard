@@ -64,7 +64,7 @@
         <mj-section>
             <mj-column>
                 <mj-text align="center" font-size="20px" font-weight="bold" padding-top="0">
-                    Participation de {{ member.full_name }}<br/>
+                    Bilan de participation de {{ member.full_name }}
                     au courant
                     {% if len(monthly_involvement) == 1 %}
                     du dernier
