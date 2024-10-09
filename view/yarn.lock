@@ -434,6 +434,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hey-api/client-axios@npm:^0.2.7":
+  version: 0.2.7
+  resolution: "@hey-api/client-axios@npm:0.2.7"
+  peerDependencies:
+    axios: ">= 1.0.0 < 2"
+  checksum: 10c0/eb6a8ca24e07ed54ef3c28da9193ef5f20cef829f53f3e28a642ab35fe28a1e334878e78c9f9d96e88f57fac7196fc7e9af37948b298b59d298ecde28ddc8231
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -1885,6 +1894,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "chdlm-mini-dashboard@workspace:."
   dependencies:
+    "@hey-api/client-axios": "npm:^0.2.7"
     "@intlify/unplugin-vue-i18n": "npm:^2.0.0"
     "@quasar/app-vite": "npm:^2.0.0-beta.21"
     "@quasar/extras": "npm:^1.16.12"

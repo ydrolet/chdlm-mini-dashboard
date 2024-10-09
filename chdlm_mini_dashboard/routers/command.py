@@ -6,13 +6,13 @@ from fastapi import APIRouter, Depends, HTTPException
 from chdlm_mini_dashboard.dependencies import get_chdlm_involvement_manager
 from chdlm_mini_dashboard.helpers.utils import EmailSendingException
 from chdlm_mini_dashboard.managers.chdlm_involvement import ChdlmInvolvementManager
-from chdlm_mini_dashboard.models.commands import SendInvolvementSummaryEmail, SendInvolvementSummaryEmailResponse
+from chdlm_mini_dashboard.models.commands import SendInvolvementSummaryEmail, SendInvolvementSummaryEmailResult
 
-router = APIRouter(prefix="/command")
+router = APIRouter(prefix="/command", tags=["command"])
 
 
-@router.post("/send-email", response_model=SendInvolvementSummaryEmailResponse)
-async def send_email(
+@router.post("/send-email", response_model=SendInvolvementSummaryEmailResult)
+async def send_involvement_summary_email(
         command: SendInvolvementSummaryEmail,
         chdlm_involvement_manager: Annotated[ChdlmInvolvementManager, Depends(get_chdlm_involvement_manager)],
 ):
@@ -28,7 +28,7 @@ async def send_email(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Une erreur inattendue s'est produite: {e}")
 
-    return SendInvolvementSummaryEmailResponse(
+    return SendInvolvementSummaryEmailResult(
         member_full_name=member.full_name,
         preceding_months=command.preceding_months,
         masked_email_address=re.sub(r"(?<=.).(?=.*.@)", '*', member.email_address),

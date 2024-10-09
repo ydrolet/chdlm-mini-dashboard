@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from chdlm_mini_dashboard.models.info import Info
 from chdlm_mini_dashboard.settings import settings
 
-router = APIRouter(prefix="/info")
+router = APIRouter(prefix="/info", tags=["info"])
 
 
 @router.get("/", response_model=Info)
