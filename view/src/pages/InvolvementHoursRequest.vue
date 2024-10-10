@@ -40,18 +40,18 @@
         <q-form
           class="q-gutter-md q-mt-xs q-mb-lg"
           style="width: 340px;"
-          @submit="onSubmit"
+          @submit="onSendEmail"
         >
           <q-select
-            v-model="memberName"
+            v-model="selectedMemberName"
             filled
-            :options
+            :options="membersNames"
             label="Nom du membre"
           />
 
           <div class="q-py-sm" style="background-color: rgba(255, 255, 255, 0.07);">
             <span class="months-select-text">Pour les</span>
-            <q-avatar class="q-mx-xs" size="lg" color="dark">{{ precedingMonths }}</q-avatar>
+            <q-avatar class="q-mx-xs" size="lg" color="dark">{{ selectedPrecedingMonths }}</q-avatar>
             <span class="months-select-text">derniers mois</span>
 
             <q-btn
@@ -60,8 +60,8 @@
               size="md"
               color="primary"
               icon="remove"
-              :disable="precedingMonths <= 3"
-              @click="() => { precedingMonths -= 1 }"
+              :disable="selectedPrecedingMonths <= minPrecedingMonths"
+              @click="() => { selectedPrecedingMonths -= 1 }"
             />
             <q-btn
               class="q-ml-lg"
@@ -69,8 +69,8 @@
               size="md"
               color="primary"
               icon="add"
-              :disable="precedingMonths >= maxPrecedingMonths"
-              @click="() => { precedingMonths += 1 }"
+              :disable="selectedPrecedingMonths >= maxPrecedingMonths"
+              @click="() => { selectedPrecedingMonths += 1 }"
             />
           </div>
 
@@ -106,23 +106,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
+import { CommandService, DataService, InfoService } from "src/clients/chdlm"
 
-const memberName = ref<string | null>(null)
-const precedingMonths = ref<number>(3)
+const defaultPrecedingMonths = 3
 
-const maxPrecedingMonths = 24
+let membersNames = ref<string[]>([])
+let minPrecedingMonths = ref<number>(defaultPrecedingMonths)
+let maxPrecedingMonths = ref<number>(defaultPrecedingMonths)
 
-const onSubmit = () => {
-  console.log("submit", memberName.value, precedingMonths.value)
+const selectedMemberName = ref<string | null>(null)
+const selectedPrecedingMonths = ref<number>(defaultPrecedingMonths)
+
+const onSendEmail = () => {
+  if (selectedMemberName.value) {
+    CommandService.sendInvolvementSummaryEmail({
+      body: {
+        memberFullName: selectedMemberName.value,
+        precedingMonths: selectedPrecedingMonths.value
+      }
+    })
+  }
 }
 
-const options = [
-  "ExampleName1",
-  "ExampleName2",
-  "ExampleName3",
-  "ExampleName4"
-]
+onMounted(async () => {
+  const { data: membersData } = await DataService.getMembersList()
+  if (membersData) {
+    membersNames.value = membersData
+  }
+
+  const { data: info } = await InfoService.getInfo()
+  if (info) {
+    minPrecedingMonths.value = info.minPrecedingMonths
+    maxPrecedingMonths.value = info.maxPrecedingMonths
+  }
+})
 </script>
 
 <style scoped lang="scss">
