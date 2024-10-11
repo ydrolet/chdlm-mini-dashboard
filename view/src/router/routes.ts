@@ -1,18 +1,31 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from "vue-router"
+import MainLayout from "layouts/MainLayout.vue"
+import InvolvementSummaryForm from "pages/InvolvementSummaryForm.vue"
+import LearnMore from "pages/LearnMore.vue"
+import ErrorNotFound from "pages/ErrorNotFound.vue"
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/InvolvementHoursRequest.vue') }],
+    path: "/",
+    component: MainLayout,
+    children: [
+      {
+        path: "/",
+        component: InvolvementSummaryForm
+      },
+      {
+        path: "savoirplus",
+        component: LearnMore
+      },
+    ]
   },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
-  },
-];
+    path: "/:catchAll(.*)*",
+    component: ErrorNotFound
+  }
+]
 
-export default routes;
+export default routes

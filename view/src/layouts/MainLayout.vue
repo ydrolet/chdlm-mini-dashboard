@@ -2,30 +2,79 @@
   <q-layout view="lHh Lpr lFf">
     <q-header>
       <q-toolbar>
-        <q-img
-          src="public/logo_cdlm_haute_resolution_sans_titre_avec_bordure.png"
-          style="width: 60px;"
-        />
+        <transition-group name="back-button-fade">
+          <q-btn
+            v-if="$route.path !== '/'"
+            key="back-button"
+            flat
+            icon="arrow_back"
+            padding="10px 15px"
+            @click="$router.back()"
+          />
 
-        <q-toolbar-title id="title">
-          Coopérative d'Habitation de la Montagne
-        </q-toolbar-title>
+          <q-img
+            key="logo"
+            src="/logo_cdlm_haute_resolution_sans_titre_avec_bordure.png"
+            style="width: 60px;"
+            fit="scale-down"
+          />
+
+          <q-toolbar-title id="title" key="title" shrink>
+            Coopérative d'Habitation de la Montagne
+          </q-toolbar-title>
+        </transition-group>
       </q-toolbar>
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="page-fade-transition" mode="out-in" @before-enter="pageTransitionCue.notify()">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
+import { pageTransitionCue } from "boot/signals"
 </script>
 
 <style scoped lang="scss">
 #title {
+  font-size: 1.3rem;
+  text-align: left;
+  text-wrap: wrap;
+
   @media (width <= map-get($sizes, sm)) {
-    font-size: 15px;
+    width: 180px;
+    font-size: 0.85rem;
   }
+}
+
+.page-fade-transition-enter-active,
+.page-fade-transition-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.page-fade-transition-enter-from,
+.page-fade-transition-leave-to {
+  opacity: 0;
+}
+
+.back-button-fade-move,
+.back-button-fade-enter-active,
+.back-button-fade-leave-active {
+  transition: all 0.8s;
+}
+
+.back-button-fade-enter-from,
+.back-button-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.back-button-fade-leave-active {
+  position: absolute;
 }
 </style>

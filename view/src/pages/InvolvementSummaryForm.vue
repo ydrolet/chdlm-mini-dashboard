@@ -1,8 +1,8 @@
 <template>
-  <q-page class="row justify-center q-pa-md">
+  <basic-page>
     <div class="column items-center text-center" style="max-width: 600px">
       <h5 class="q-my-md">
-        Outil pour consulter son bilan de participation à la coopérative
+        Consulter son bilan de participation à la coopérative
       </h5>
 
       <div>
@@ -94,6 +94,7 @@
           no-caps
           rounded
           style="max-width: 280px"
+          to="/savoirplus"
         >
           <q-icon left name="import_contacts" />
           <div style="width: 80%">
@@ -102,10 +103,11 @@
         </q-btn>
       </div>
     </div>
-  </q-page>
+  </basic-page>
 </template>
 
 <script setup lang="ts">
+import BasicPage from "layouts/BasicPage.vue"
 import { onMounted, ref } from "vue"
 import { CommandService, DataService, InfoService } from "src/clients/chdlm"
 
