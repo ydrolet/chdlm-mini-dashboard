@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from chdlm_mini_dashboard.models.info import Info
-from chdlm_mini_dashboard.settings import settings
+from server.models.info import Info
+from server.settings import settings
 
 router = APIRouter(prefix="/info", tags=["info"])
 

@@ -3,10 +3,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from chdlm_mini_dashboard.dependencies import get_chdlm_involvement_manager
-from chdlm_mini_dashboard.helpers.utils import EmailSendingException
-from chdlm_mini_dashboard.managers.chdlm_involvement import ChdlmInvolvementManager
-from chdlm_mini_dashboard.models.commands import SendInvolvementSummaryEmail, SendInvolvementSummaryEmailResult
+from server.dependencies import get_chdlm_involvement_manager
+from server.helpers.utils import EmailSendingException
+from server.managers.chdlm_involvement import ChdlmInvolvementManager
+from server.models.commands import SendInvolvementSummaryEmail, SendInvolvementSummaryEmailResult
 
 router = APIRouter(prefix="/command", tags=["command"])
 

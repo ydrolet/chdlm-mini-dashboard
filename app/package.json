@@ -1,5 +1,5 @@
 {
-  "name": "chdlm-mini-dashboard",
+  "name": "chdlm-mini-dashboard-app",
   "version": "0.0.1",
   "description": "Mini dashboard for CHDLM data",
   "productName": "CHDLM Mini Dashboard",
@@ -39,10 +39,12 @@
     "vite-plugin-checker": "^0.7.2",
     "vue-tsc": "2.0.29"
   },
+  "resolutions": {
+    "rollup": "4.24.0"
+  },
   "engines": {
     "node": "^24 || ^22 || ^20 || ^18",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  },
-  "packageManager": "yarn@4.4.1"
+  }
 }

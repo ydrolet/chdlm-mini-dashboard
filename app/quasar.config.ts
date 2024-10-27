@@ -55,7 +55,9 @@ export default configure((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        API: ctx.prod ? 'https://api.coopdelamontagne.com' : 'http://localhost:8000'
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -93,7 +95,8 @@ export default configure((ctx) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       // https: true
-      open: false // opens browser window automatically
+      open: false, // opens browser window automatically
+      port: 9185
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
@@ -213,7 +216,7 @@ export default configure((ctx) => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'chdlm-mini-dashboard'
+        appId: 'chdlm-mini-dashboard-app'
       }
     },
 

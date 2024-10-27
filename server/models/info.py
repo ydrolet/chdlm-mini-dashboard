@@ -1,4 +1,4 @@
-from chdlm_mini_dashboard.models.common import CustomBaseModel
+from server.models.common import CustomBaseModel
 
 
 class Info(CustomBaseModel):

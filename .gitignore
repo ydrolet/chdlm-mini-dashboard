@@ -1,11 +1,6 @@
-*.py[cod]
-__pycache__/
-
-.DS_Store
 .idea/
 .vscode/
 
 .venv/
 venv/
-
-.env
+node_modules/

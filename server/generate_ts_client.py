@@ -5,7 +5,7 @@ import json
 import subprocess
 from pathlib import Path
 
-from chdlm_mini_dashboard.main import app
+from server.main import app
 
 openapi_content = app.openapi()
 
@@ -24,7 +24,7 @@ openapi_ts_config_path = Path("/tmp/openapi-ts.config.json")
 openapi_ts_config_path.write_text(json.dumps({
     "client": "@hey-api/client-axios",
     "input": openapi_file_path.as_posix(),
-    "output": "view/src/clients/chdlm",
+    "output": "app/src/clients/chdlm",
     "services": {"asClass": True},
 }))
 

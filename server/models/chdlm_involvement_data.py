@@ -6,8 +6,8 @@ from pydantic import field_validator, model_validator, EmailStr
 from pydantic_extra_types.pendulum_dt import Duration, DateTime
 from typing_extensions import Self
 
-from chdlm_mini_dashboard.helpers.utils import get_month_name
-from chdlm_mini_dashboard.models.common import CustomBaseModel, RootModelStrDict, RootModelIntDict
+from server.helpers.utils import get_month_name
+from server.models.common import CustomBaseModel, RootModelStrDict, RootModelIntDict
 
 
 class ExtractionDuration(CustomBaseModel):

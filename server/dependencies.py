@@ -4,8 +4,8 @@ from fastapi import Depends
 from sendgrid import SendGridAPIClient
 from supabase import create_client, Client, ClientOptions
 
-from chdlm_mini_dashboard.managers.chdlm_involvement import ChdlmInvolvementManager
-from chdlm_mini_dashboard.settings import settings
+from server.managers.chdlm_involvement import ChdlmInvolvementManager
+from server.settings import settings
 
 
 def get_supabase_api_client() -> Client:

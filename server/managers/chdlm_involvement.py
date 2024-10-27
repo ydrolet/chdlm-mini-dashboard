@@ -4,10 +4,10 @@ from pathlib import Path
 from sendgrid import SendGridAPIClient, Mail, From
 from supabase import Client
 
-from chdlm_mini_dashboard.helpers.mjml import render_mjml_template_to_html
-from chdlm_mini_dashboard.helpers.utils import EmailSendingException
-from chdlm_mini_dashboard.models.chdlm_involvement_data import Members, TimesheetsExtractedData, Member
-from chdlm_mini_dashboard.settings import settings
+from server.helpers.mjml import render_mjml_template_to_html
+from server.helpers.utils import EmailSendingException
+from server.models.chdlm_involvement_data import Members, TimesheetsExtractedData, Member
+from server.settings import settings
 
 
 class ChdlmInvolvementManager:
@@ -40,7 +40,7 @@ class ChdlmInvolvementManager:
         grand_total = sum(month.total_hours for month in monthly_involvement.values() if month is not None)
 
         rendered_html = render_mjml_template_to_html(
-            Path("chdlm_mini_dashboard/templates/email/involvement_summary.mjml"),
+            Path("templates/email/involvement_summary.mjml"),
             {
                 "member": member,
                 "monthly_involvement": monthly_involvement,

@@ -1,9 +1,7 @@
 [tool.poetry]
-name = "chdlm-mini-dashboard"
-version = "0.1.0"
-description = ""
+package-mode = false
+name = "chdlm-mini-dashboard-server"
 authors = ["Yannick Drolet <ydrolet@gmail.com>"]
-readme = "README.adoc"
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -21,6 +19,3 @@ supabase = "^2.7.4"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-chdlm_mini_dashboard = "chdlm_mini_dashboard.main:main"

@@ -2,8 +2,8 @@ from typing import Annotated
 
 from pydantic import Field, EmailStr
 
-from chdlm_mini_dashboard.models.common import CustomBaseModel
-from chdlm_mini_dashboard.settings import settings
+from server.models.common import CustomBaseModel
+from server.settings import settings
 
 
 class SendInvolvementSummaryEmail(CustomBaseModel):
