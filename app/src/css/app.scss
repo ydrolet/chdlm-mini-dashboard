@@ -56,3 +56,20 @@ body {
   font-family: Ubuntu, sans-serif;
   font-size: 16px;
 }
+
+.h-center {
+  display: flex;
+  justify-content: center;
+}
+
+.v-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inline-hyperlink {
+  text-decoration: none;
+  font-weight: bold;
+  color: $secondary;
+}

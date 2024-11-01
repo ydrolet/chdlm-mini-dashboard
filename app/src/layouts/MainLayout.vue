@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" lang="fr">
     <q-header>
       <q-toolbar>
         <transition-group name="back-button-fade">
@@ -9,7 +9,7 @@
             flat
             icon="arrow_back"
             padding="10px 15px"
-            @click="$router.back()"
+            to="/"
           />
 
           <q-img
@@ -26,18 +26,21 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="h-center">
       <router-view v-slot="{ Component }">
         <transition name="page-fade-transition" mode="out-in" @before-enter="pageTransitionCue.notify()">
-          <component :is="Component" />
+          <component :is="Component"/>
         </transition>
       </router-view>
+      <q-page-scroller reverse position="bottom" :scroll-offset="20">
+        <q-btn fab icon="keyboard_arrow_down" color="accent"/>
+      </q-page-scroller>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { pageTransitionCue } from "boot/signals"
+import {pageTransitionCue} from "boot/signals"
 </script>
 
 <style scoped lang="scss">

@@ -25,7 +25,10 @@ openapi_ts_config_path.write_text(json.dumps({
     "client": "@hey-api/client-axios",
     "input": openapi_file_path.as_posix(),
     "output": "app/src/clients/chdlm",
-    "services": {"asClass": True},
+    "plugins": [{
+        "asClass": True,
+        "name": '@hey-api/services'
+    }]
 }))
 
 subprocess.run(["npx", "@hey-api/openapi-ts", "--file", openapi_ts_config_path.as_posix()])

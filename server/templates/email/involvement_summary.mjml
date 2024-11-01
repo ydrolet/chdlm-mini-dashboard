@@ -76,8 +76,8 @@
                 <mj-text align="center" font-size="13px" padding-top="0" padding-bottom="0">
                     <p>Si vous constatez que des données ne correspondent pas à ce que vous avez réalisé réellement,
                         contactez la/le responsable de votre comité pour qu'elle/il apporte des corrections.</p>
-                    <p>Si vous constatez d'autres problèmes, ou avez des commentaires/suggestions, signalez-le à Yannick
-                        (<a href="mailto:ydrolet@gmail.com">ydrolet@gmail.com</a>).
+                    <p>Si vous constatez d'autres problèmes, ou avez des commentaires/suggestions, signalez-le à<br>
+                        <a href="mailto:participation@coopdelamontagne.com">participation@coopdelamontagne.com</a>
                     </p>
                 </mj-text>
                 <mj-divider mj-class="tasks-table-divider" padding-bottom="0"/>

@@ -3,6 +3,7 @@ import MainLayout from "layouts/MainLayout.vue"
 import InvolvementSummaryForm from "pages/InvolvementSummaryForm.vue"
 import LearnMore from "pages/LearnMore.vue"
 import ErrorNotFound from "pages/ErrorNotFound.vue"
+import WhyImportant from "pages/WhyImportant.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,6 +17,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: "savoirplus",
         component: LearnMore
+      },
+      {
+        path: "pourquoi",
+        component: WhyImportant
       },
     ]
   },
