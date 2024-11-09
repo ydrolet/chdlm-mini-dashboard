@@ -5,13 +5,15 @@ services:
     branch: main
     rootDir: app
     runtime: static
-    buildCommand: corepack enable; yarn install; yarn build
-    staticPublishPath: ./dist/spa
+    buildCommand: corepack enable; yarn install; yarn generate
+    staticPublishPath: ./.output/public
     domains:
       - app.coopdelamontagne.com
     envVars:
       - key: SKIP_INSTALL_DEPS
         value: "true"
+      - key: ENVIRONMENT
+        value: production
   - type: web
     name: chdlm-mini-dashboard-server
     repo: https://github.com/ydrolet/chdlm-mini-dashboard
