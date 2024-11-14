@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@primevue/nuxt-module",
     "@nuxtjs/tailwindcss",
+    "@nuxt/fonts",
     "nuxt-open-fetch",
   ],
   devtools: {enabled: true},

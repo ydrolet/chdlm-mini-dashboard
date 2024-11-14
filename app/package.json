@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/fonts": "^0.10.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@primevue/forms": "^4.2.1",
     "@primevue/themes": "^4.2.1",

@@ -3,7 +3,7 @@ export default {
   content: [],
   theme: {
     fontFamily: {
-      sans: ["Helvetica", "Arial", "sans-serif"],
+      sans: ["Inter", "Helvetica", "Arial", "sans-serif"],
     },
     extend: {},
   },
