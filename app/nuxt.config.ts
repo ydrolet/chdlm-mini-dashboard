@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-open-fetch",
   ],
-  ssr: false,
   devtools: {enabled: true},
 
   app: {
