@@ -116,7 +116,7 @@
           </div>
 
           <p class="text-center hyphens-none">
-            Si vous avez des questions, commentaires ou suggestions, n'hésitez pas à écrire à
+            Si vous avez des questions, commentaires, suggestions ou problèmes, n'hésitez pas à écrire à
             <NuxtLink
               class="inline-hyperlink"
               to="mailto:participation@coopdelamontagne.com"
