@@ -12,6 +12,10 @@ components:
     Info:
       additionalProperties: false
       properties:
+        latestExtraction:
+          format: date-time
+          title: Latestextraction
+          type: string
         maxPrecedingMonths:
           title: Maxprecedingmonths
           type: integer
@@ -21,6 +25,7 @@ components:
       required:
       - minPrecedingMonths
       - maxPrecedingMonths
+      - latestExtraction
       title: Info
       type: object
     SendInvolvementSummaryEmail:

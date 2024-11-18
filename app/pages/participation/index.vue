@@ -38,6 +38,7 @@
                   v-model="selectedPrecedingMonths"
                   inputClass="text-center"
                   inputId="preceding-months"
+                  pt:pcInputText:root:inputmode="none"
                   showButtons
                   buttonLayout="horizontal"
                   decrementIcon="pi pi-minus"
@@ -74,12 +75,18 @@
               </tr>
               <tr>
                 <td>
-                  Dû à une limitation technique, les données sont mises à jour aux 30 minutes. Plus de détails dans la page
-                  <NuxtLink
-                    class="inline-hyperlink"
-                    to="/participation/savoirplus"
-                  >En savoir plus
-                  </NuxtLink>
+                  <div>
+                    Dû à une limitation technique, les données sont mises à jour aux 30 minutes. Plus de détails dans la page
+                    <NuxtLink
+                      class="inline-hyperlink"
+                      to="/participation/savoirplus"
+                    >En savoir plus
+                    </NuxtLink>
+                  </div>
+                  <div class="pt-1 flex flex-wrap">
+                    <span>Dernière modification des données :&nbsp;</span>
+                    <span>{{ latestExtraction.format("LLL") }}</span>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -124,15 +131,20 @@
 </template>
 
 <script setup lang="ts">
+import type {Dayjs} from "dayjs"
+
 const {$chdlm} = useNuxtApp()
+const $dayjs = useDayjs()
 const $toast = useToast()
 
 const defaultPrecedingMonths = 3
 
 const sendingEmail = ref(false)
 
-const {data: membersNames} = await useChdlm("/data/members")
-const {data: info} = await useChdlm("/info/")
+const {data: membersNames} = await useChdlm("/data/members", {lazy: true, server: false})
+const {data: info} = await useChdlm("/info/", {lazy: true, server: false})
+
+const latestExtraction = computed<Dayjs>(() => $dayjs(info.value?.latestExtraction))
 
 const selectedMemberName = useState<string | null>("selectedMemberName", () => null)
 const selectedPrecedingMonths = useState<number>("selectedPrecedingMonths", () => defaultPrecedingMonths)

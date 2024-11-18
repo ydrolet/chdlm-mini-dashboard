@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "nuxt-open-fetch",
     "@nuxtjs/device",
+    "dayjs-nuxt",
   ],
   devtools: {enabled: true},
 
@@ -47,6 +48,13 @@ export default defineNuxtConfig({
 
   typescript: {
     typeCheck: true
+  },
+
+  dayjs: {
+    locales: ["fr-ca", "en-ca"],
+    plugins: ["utc", "timezone", "localizedFormat"],
+    defaultLocale: "fr-ca",
+    defaultTimezone: "America/Toronto",
   },
 
   eslint: {

@@ -1328,7 +1328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.14.159, @nuxt/kit@npm:^3.13.1, @nuxt/kit@npm:^3.13.2, @nuxt/kit@npm:^3.7.3":
+"@nuxt/kit@npm:3.14.159, @nuxt/kit@npm:^3.13.1, @nuxt/kit@npm:^3.13.2, @nuxt/kit@npm:^3.7.3, @nuxt/kit@npm:^3.7.4":
   version: 3.14.159
   resolution: "@nuxt/kit@npm:3.14.159"
   dependencies:
@@ -3253,6 +3253,8 @@ __metadata:
     "@primevue/forms": "npm:^4.2.1"
     "@primevue/nuxt-module": "npm:^4.2.1"
     "@primevue/themes": "npm:^4.2.1"
+    dayjs: "npm:^1.11.13"
+    dayjs-nuxt: "npm:^2.1.11"
     eslint: "npm:^9.14.0"
     nuxt: "npm:^3.14.159"
     nuxt-open-fetch: "npm:^0.9.5"
@@ -3801,6 +3803,23 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+  languageName: node
+  linkType: hard
+
+"dayjs-nuxt@npm:^2.1.11":
+  version: 2.1.11
+  resolution: "dayjs-nuxt@npm:2.1.11"
+  dependencies:
+    "@nuxt/kit": "npm:^3.7.4"
+    dayjs: "npm:^1.11.10"
+  checksum: 10c0/cf7d1ef95440f64e4c2d05582ed86c3004b86818483d0e4a037696a0a2389330b8a212a1884d0c42ad4ff3bdee8afc6386bf421c8eee5251c6ea38a220068a25
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.10, dayjs@npm:^1.11.13":
+  version: 1.11.13
+  resolution: "dayjs@npm:1.11.13"
+  checksum: 10c0/a3caf6ac8363c7dade9d1ee797848ddcf25c1ace68d9fe8678ecf8ba0675825430de5d793672ec87b24a69bf04a1544b176547b2539982275d5542a7955f35b7
   languageName: node
   linkType: hard
 
