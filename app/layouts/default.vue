@@ -4,8 +4,15 @@
       <slot name="title" />
     </h1>
 
-    <div class="text-justify hyphens-auto">
+    <div class="text-left hyphens-auto">
       <slot name="content" />
+    </div>
+
+    <div class="flex items-center text-right text-sm pt-14 text-gray-500">
+      <div>Fait et maintenu par<br><b>Yannick Drolet</b></div>
+      <NuxtLink to="https://github.com/ydrolet/chdlm-mini-dashboard">
+        <i class="pi pi-github pl-2.5 text-2xl" />
+      </NuxtLink>
     </div>
   </div>
 </template>

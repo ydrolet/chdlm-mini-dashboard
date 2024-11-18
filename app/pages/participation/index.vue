@@ -54,6 +54,7 @@
               type="submit"
               icon="pi pi-envelope"
               label="Envoyer le bilan à votre courriel"
+              :loading="sendingEmail"
               :disabled="!selectedMemberName"
             />
           </Form>
@@ -77,7 +78,8 @@
                   <NuxtLink
                     class="inline-hyperlink"
                     to="/participation/savoirplus"
-                  >En savoir plus</NuxtLink>
+                  >En savoir plus
+                  </NuxtLink>
                 </td>
               </tr>
             </tbody>
@@ -85,15 +87,18 @@
 
           <div class="flex flex-col gap-5 w-80 hyphens-none">
             <NuxtLink to="/participation/pourquoi">
+              <!-- TODO: Use reference to the page title for the button label -->
               <Button
                 rounded
                 severity="contrast"
                 icon="pi pi-question-circle"
                 label="Pourquoi consulter son bilan de participation ?"
+                :class="$style.whyPageButton"
               />
             </NuxtLink>
 
             <NuxtLink to="/participation/savoirplus">
+              <!-- TODO: Use reference to the page title for the button label -->
               <Button
                 rounded
                 severity="info"
@@ -102,6 +107,16 @@
               />
             </NuxtLink>
           </div>
+
+          <p class="text-center hyphens-none">
+            Si vous avez des questions, commentaires ou suggestions, n'hésitez pas à écrire à
+            <NuxtLink
+              class="inline-hyperlink"
+              to="mailto:participation@coopdelamontagne.com"
+            >
+              participation@coopdelamontagne.com
+            </NuxtLink>
+          </p>
         </div>
       </template>
     </NuxtLayout>
@@ -110,8 +125,11 @@
 
 <script setup lang="ts">
 const {$chdlm} = useNuxtApp()
+const $toast = useToast()
 
 const defaultPrecedingMonths = 3
+
+const sendingEmail = ref(false)
 
 const {data: membersNames} = await useChdlm("/data/members")
 const {data: info} = await useChdlm("/info/")
@@ -121,12 +139,30 @@ const selectedPrecedingMonths = useState<number>("selectedPrecedingMonths", () =
 
 const sendEmail = () => {
   if (selectedMemberName.value) {
+    sendingEmail.value = true
     $chdlm("/command/send-email", {
       method: "POST",
       body: {
         memberFullName: selectedMemberName.value,
         precedingMonths: selectedPrecedingMonths.value
+      },
+      onResponse: ({response}) => {
+        if (response.ok) {
+          $toast.add({
+            severity: "success",
+            summary: `Le bilan a été envoyé avec succès à l'adresse courriel ${response._data.maskedEmailAddress}`,
+            life: 8000,
+          })
+        }
       }
+    }).catch(() => {
+      $toast.add({
+        severity: "error",
+        summary: "Une erreur est survenue lors de l'envoi du bilan à votre courriel",
+        life: 5000
+      })
+    }).finally(() => {
+      sendingEmail.value = false
     })
   }
 }
@@ -143,6 +179,22 @@ const sendEmail = () => {
 
   td {
     text-align: justify;
+  }
+}
+</style>
+
+<style module lang="scss">
+.whyPageButton {
+  animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px white);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px white);
   }
 }
 </style>

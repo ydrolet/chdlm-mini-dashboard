@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxt/fonts",
     "nuxt-open-fetch",
+    "@nuxtjs/device",
   ],
   devtools: {enabled: true},
 
@@ -71,6 +72,18 @@ export default defineNuxtConfig({
             inputnumber: {
               button: {
                 width: "4.5rem"
+              }
+            },
+            toast: {
+              colorScheme: {
+                dark: {
+                  success: {
+                    background: "var(--p-green-950)"
+                  },
+                  error: {
+                    background: "var(--p-rose-950)"
+                  }
+                }
               }
             }
           }

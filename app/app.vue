@@ -1,4 +1,5 @@
 <template>
+  <Toast position="bottom-center" />
   <NuxtLayout name="viewport">
     <NuxtPage />
   </NuxtLayout>
