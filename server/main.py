@@ -1,5 +1,6 @@
 import logging
 
+import pendulum
 import uvicorn
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
@@ -8,6 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from server.routers import command, data, info
 
 logging.basicConfig(level=logging.INFO)
+
+pendulum.set_locale("fr")
 
 # For TypeScript client generation (https://fastapi.tiangolo.com/advanced/generate-clients/)
 def custom_generate_unique_id(route: APIRoute):

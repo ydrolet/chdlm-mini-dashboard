@@ -1,11 +1,12 @@
-import asyncio
-import calendar
 import hashlib
 import inspect
 import logging
 import pickle
 
-from pendulum import Duration, DateTime, now
+from pendulum import Duration, DateTime, now, timezone
+
+
+default_timezone = timezone("America/Toronto")
 
 
 class CacheExpired(Exception):
@@ -56,7 +57,3 @@ def persistent_memoize(ttl: Duration):
         return wrapper
 
     return decorator
-
-
-def get_month_name(month_number: int) -> str:
-    return calendar.month_name[month_number]

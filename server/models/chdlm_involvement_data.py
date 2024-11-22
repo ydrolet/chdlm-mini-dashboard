@@ -6,7 +6,6 @@ from pydantic import field_validator, model_validator, EmailStr
 from pydantic_extra_types.pendulum_dt import Duration, DateTime
 from typing_extensions import Self
 
-from server.helpers.utils import get_month_name
 from server.models.common import CustomBaseModel, RootModelStrDict, RootModelIntDict
 
 
@@ -59,8 +58,7 @@ class Period:
         return f"{self.year}-{self.month:02}"
 
     def __str__(self):
-        return f"{get_month_name(int(self.month))} {self.year}"
-
+        return pendulum.datetime(self.year, self.month, 1).format("MMMM YYYY")
 
 class CommitteeInvolvement(RootModelStrDict[list[AccomplishedTask]]):
     @property

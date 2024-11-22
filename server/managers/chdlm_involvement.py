@@ -5,7 +5,7 @@ from sendgrid import SendGridAPIClient, Mail, From
 from supabase import Client
 
 from server.helpers.mjml import render_mjml_template_to_html
-from server.helpers.utils import EmailSendingException
+from server.helpers.utils import EmailSendingException, default_timezone
 from server.models.chdlm_involvement_data import Members, TimesheetsExtractedData, Member
 from server.settings import settings
 
@@ -34,7 +34,8 @@ class ChdlmInvolvementManager:
             member_full_name: str,
             preceding_months_count: int = 3,
     ) -> Member:
-        member = self.get_members_involvement_data()[member_full_name]
+        extracted_data = self.get_timesheets_extracted_data()
+        member = extracted_data.data[member_full_name]
 
         monthly_involvement = member.get_involvement_slice(preceding_months_count)
         grand_total = sum(month.total_hours for month in monthly_involvement.values() if month is not None)
@@ -43,8 +44,9 @@ class ChdlmInvolvementManager:
             Path("templates/email/involvement_summary.mjml"),
             {
                 "member": member,
+                "latest_extraction": extracted_data.extraction_info.timestamp.in_tz(default_timezone).format("D MMMM YYYY à HH:mm"),
                 "monthly_involvement": monthly_involvement,
-                "grand_total": grand_total
+                "grand_total": grand_total,
             }
         )
 
