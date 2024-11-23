@@ -35,6 +35,9 @@ class Address(CustomBaseModel):
     civic_number: int
     unit_number: int
 
+    def __str__(self):
+        return f"{self.civic_number}\u00a0#{self.unit_number}"
+
 
 class MemberStatus(str, Enum):
     member = "Membre"
@@ -110,6 +113,10 @@ class Resident(CustomBaseModel):
     @property
     def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
+    def find_coresidents(self, residents: list[Self]) -> list[Self]:
+        return [resident for resident in residents if resident.address == self.address and resident != self]
+
 
 
 class Member(Resident):

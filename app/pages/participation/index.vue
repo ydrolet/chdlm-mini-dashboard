@@ -25,7 +25,7 @@
                   inputId="member-name"
                   :options="membersNames ?? []"
                 />
-                <label for="member-name">Nom du membre</label>
+                <label for="member-name">Nom du résident</label>
               </FloatLabel>
             </InputGroup>
 
@@ -70,7 +70,7 @@
                   <i class="pi pi-exclamation-triangle text-2xl text-orange-400" />
                 </th>
                 <td>
-                  Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du membre. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
+                  Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du résident. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
                 </td>
               </tr>
               <tr>

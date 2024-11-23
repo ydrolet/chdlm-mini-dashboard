@@ -64,18 +64,11 @@
         <mj-section>
             <mj-column>
                 <mj-text align="center" font-size="20px" font-weight="bold" padding-top="0">
-                    Bilan de participation de {{ member.full_name }}
-                    au courant
-                    {% if len(monthly_involvement) == 1 %}
-                    du dernier
-                    {% else %}
-                    des {{ len(monthly_involvement) }} derniers
-                    {% endif %}
-                    mois
+                    Bilan de participation de<br>{{ member.full_name }} ({{ member.address }})
                 </mj-text>
                 <mj-text align="center" font-size="13px" padding-top="0" padding-bottom="0">
                     <p>
-                        Basé sur les données dont la dernière modification a été faite le <b>{{ latest_extraction }}</b>. Si vous constatez que des données ne correspondent pas à ce que vous avez réalisé réellement, contactez la/le responsable de votre comité pour qu'elle/il apporte des corrections.
+                        Bilan basé sur les données dont la dernière modification a été faite le <b>{{ latest_extraction }}</b>. Si vous constatez que des données ne correspondent pas à ce que vous avez réalisé réellement, contactez la/le responsable de votre comité pour qu'elle/il apporte des corrections.
                     </p>
                     <p>
                         Si vous constatez d'autres problèmes, ou avez des commentaires/suggestions, signalez-le à<br><a href="mailto:participation@coopdelamontagne.com">participation@coopdelamontagne.com</a>

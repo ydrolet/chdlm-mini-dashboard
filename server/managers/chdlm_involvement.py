@@ -53,7 +53,7 @@ class ChdlmInvolvementManager:
         email = Mail(
             to_emails=settings.debug_recipient_email_address or member.email_address,
             from_email=From(settings.from_email_address, settings.from_name),
-            subject=f"[CHDLM] Données de participation pour {member.full_name}",
+            subject=f"[CHDLM] Bilan de participation de {member.full_name}",
             html_content=rendered_html,
         )
         email.reply_to = settings.reply_to_email_address

@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      title: "CHDLM | Participation",
       meta: [
         {name: "robots", content: "noindex, nofollow"},
       ],
