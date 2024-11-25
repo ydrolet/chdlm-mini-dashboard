@@ -5,23 +5,19 @@
 
       <template #content>
         <p>
-          Tout comme un propriétaire d'une maison individuelle ou d'un bloc d'appartements, les membres dans une coopérative d'habitation ont des responsabilités importantes pour s'assurer du bon fonctionnement de notre environnement.
-          <NuxtLink
-            class="inline-hyperlink"
-            to="https://cooperativehabitation.coop/habiter-en-coop/"
-          >
-            Une coopérative d'habitation est une entreprise privée, à but non lucratif, dont nous sommes toutes et tous responsables.
-          </NuxtLink>
-          La participation des membres est <b>cruciale</b> et doit être prise au sérieux. Si ces responsabilités ne sont pas prises en main, entre autres nous devrons engager des gens qui s'en occuperont, donc des coûts qui s'additionneraient au loyer.
+          Cet outil est un premier pas vers une meilleure façon de gérer les tâches. Je vois ce projet un peu comme une preuve de concept. L’idée est de rendre la gestion de tâches plus simple et agréable, donc par conséquent rendre plus motivant la réalisation des tâches essentielles au bon fonctionnement de notre coop. Un objectif entre autres est de mettre l’accent sur les tâches plutôt que les heures, mais en gardant malgré tout une importance sur les heures pour assurer une distribution équitable des tâches. Si le projet atteint son objectif, ça pourrait aller plus loin, voire aller au-delà de notre coop.
         </p>
         <p>
-          Idéalement, tous les membres devraient répondre aux besoins de la coopérative à part égale. Pour atteindre cet idéal, il faut être structuré. L'enregistrement des heures de participation permet entre autres d'avoir une mesure pour aider à la répartition des tâches. L'objectif de chacun n'est pas de simplement « faire des heures ». L'objectif est de répondre aux besoins de notre coop.
+          Ce genre de projet n’est pas une mince affaire. Pour que l’outil évolue à un rythme raisonnable, c’est au moins 30 heures de travail par mois. N’attendez pas que l’outil évolue pour bien réaliser les tâches essentielles au bon fonctionnement de notre coop. N’attendez pas non plus pour réaliser d’autres projets et améliorer des processus qui agrémentent et facilitent la vie des membres de notre communauté.
         </p>
         <p>
-          En consultant régulièrement votre bilan de participation pour vous assurer que ce qui est enregistré reflète bien ce que vous avez accompli réellement, vous aidez à avoir des données précieuses pour la gestion/répartition globale des tâches. Merci de prendre le temps de vérifier régulièrement votre bilan de participation.
+          Il ne faut pas oublier qu'<NuxtLink class="inline-hyperlink" to="https://cooperativehabitation.coop/habiter-en-coop/">une coopérative d'habitation est une entreprise privée, à but non lucratif, dont nous sommes toutes et tous responsables</NuxtLink>. Si ces responsabilités ne sont pas prises en main, nous devrons entre autres engager des gens qui s'en occuperaient, ce qui forcément augmenterait le loyer.
         </p>
-        <p class="font-bold">
-          Plus il y a de structure et de rigueur dans notre travail pour répondre aux besoins essentiels de notre coop, plus la vie dans notre communauté sera simple et agréable et aussi plus nous pourrons mettre de l'énergie dans des projets innovants et créatifs 🙂
+        <p>
+          En consultant régulièrement votre bilan de participation pour vous assurer que ce qui est enregistré reflète bien ce que vous avez accompli réellement, vous aidez à avoir des données précieuses pour la gestion et répartition globale des tâches. Merci de prendre le temps de vérifier régulièrement votre bilan de participation.
+        </p>
+        <p>
+          Tout comme dans n’importe quelle entreprise, une bonne structure et de la rigueur dans notre travail peuvent selon moi rendre la vie dans notre communauté plus simple et agréable, ce qui peut conséquemment nous permettre de donner plus d'énergie dans des projets innovants et créatifs 🙂
         </p>
       </template>
     </NuxtLayout>
