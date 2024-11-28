@@ -5,19 +5,22 @@
 
       <template #content>
         <p>
-          Cet outil est un premier pas vers une meilleure façon de gérer les tâches. Je vois ce projet un peu comme une preuve de concept. L’idée est de rendre la gestion de tâches plus simple et agréable, donc par conséquent rendre plus motivant la réalisation des tâches essentielles au bon fonctionnement de notre coop. Un objectif entre autres est de mettre l’accent sur les tâches plutôt que les heures, mais en gardant malgré tout une importance sur les heures pour assurer une distribution équitable des tâches. Si le projet atteint son objectif, ça pourrait aller plus loin, voire aller au-delà de notre coop.
+          Cet outil est un premier pas vers une simplification et renforcement de la gestion des tâches au sein de notre coopérative, et potentiellement aussi d’autres coopératives d’habitation. En simplifiant nos processus, nous souhaitons encourager chaque membre à contribuer activement au bon fonctionnement de notre communauté. Un objectif est entre autres de mettre l’accent sur les tâches et projets essentiels à la saine gestion de la coopérative, tout en continuant à suivre les heures pour avoir une bonne répartition équitable des responsabilités.
         </p>
         <p>
-          Ce genre de projet n’est pas une mince affaire. Pour que l’outil évolue à un rythme raisonnable, c’est au moins 30 heures de travail par mois. N’attendez pas que l’outil évolue pour bien réaliser les tâches essentielles au bon fonctionnement de notre coop. N’attendez pas non plus pour réaliser d’autres projets et améliorer des processus qui agrémentent et facilitent la vie des membres de notre communauté.
+          Cette démarche ambitieuse demande un important investissement d’efforts. Le développement logiciel peut demander au moins 30 heures de travail par mois, en plus du temps de conception qu’il peut y avoir parfois en équipe. Votre rôle, en tant que membre, est tout aussi crucial : continuez à accomplir vos tâches ou à réaliser d’autres projets qui améliorent des aspects vitaux au bon fonctionnement de notre communauté.
         </p>
         <p>
-          Il ne faut pas oublier qu'<NuxtLink class="inline-hyperlink" to="https://cooperativehabitation.coop/habiter-en-coop/">une coopérative d'habitation est une entreprise privée, à but non lucratif, dont nous sommes toutes et tous responsables</NuxtLink>. Si ces responsabilités ne sont pas prises en main, nous devrons entre autres engager des gens qui s'en occuperaient, ce qui forcément augmenterait le loyer.
+          De plus, en consultant régulièrement votre bilan de participation et en vérifiant que vos contributions sont bien enregistrées, vous jouez un rôle actif dans la transparence et l’efficacité de notre gestion collective. Ces données précieuses nous permettent de mieux comprendre les besoins, d’optimiser la répartition des tâches et de structurer nos efforts pour une plus grande équité entre les comités.
         </p>
         <p>
-          En consultant régulièrement votre bilan de participation pour vous assurer que ce qui est enregistré reflète bien ce que vous avez accompli réellement, vous aidez à avoir des données précieuses pour la gestion et répartition globale des tâches. Merci de prendre le temps de vérifier régulièrement votre bilan de participation.
+          Rappelons qu’<NuxtLink class="inline-hyperlink" to="https://cooperativehabitation.coop/habiter-en-coop/">une coopérative d’habitation est une entreprise privée, à but non lucratif, gérée collectivement par ses membres.</NuxtLink> En assumant pleinement nos responsabilités, nous assurons la pérennité et la qualité de notre propriété. Nous évitons ainsi d’avoir à embaucher des professionnels pour apporter des corrections, ce qui entraînerait inévitablement des coûts supplémentaires et possiblement des augmentations de loyers.
         </p>
         <p>
-          Tout comme dans n’importe quelle entreprise, une bonne structure et de la rigueur dans notre travail peuvent selon moi rendre la vie dans notre communauté plus simple et agréable, ce qui peut conséquemment nous permettre de donner plus d'énergie dans des projets innovants et créatifs 🙂
+          Une gestion rigoureuse et bien structurée simplifie notre quotidien. Elle ouvre aussi la voie à des projets innovants et créatifs qui enrichissent notre communauté. Votre implication et votre engagement sont au coeur de notre réussite collective. Ensemble, nous construisons un cadre de vie harmonieux, solidaire et inspirant. 🙂
+        </p>
+        <p>
+          Si vous souhaitez aller plus loin, n’hésitez pas à contacter le comité de participation pour proposer ou entreprendre des projets qui améliorent nos pratiques et facilitent la vie de chacun.
         </p>
       </template>
     </NuxtLayout>
