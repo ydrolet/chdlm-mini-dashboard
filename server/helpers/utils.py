@@ -2,9 +2,11 @@ import hashlib
 import inspect
 import logging
 import pickle
+import re
+from typing import cast
 
 from pendulum import Duration, DateTime, now, timezone
-
+from pydantic import EmailStr
 
 default_timezone = timezone("America/Toronto")
 
@@ -14,6 +16,10 @@ class CacheExpired(Exception):
 
 
 class EmailSendingException(Exception):
+    pass
+
+
+class NoEmailAddress(Exception):
     pass
 
 
@@ -57,3 +63,7 @@ def persistent_memoize(ttl: Duration):
         return wrapper
 
     return decorator
+
+
+def mask_email_address(email_addr: EmailStr) -> EmailStr:
+    return cast(EmailStr, re.sub(r"(?<=.).(?=.*.@)", '*', str(email_addr)))

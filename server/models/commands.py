@@ -6,10 +6,10 @@ from server.models.common import CustomBaseModel
 from server.settings import settings
 
 
-class SendInvolvementSummaryEmail(CustomBaseModel):
+class EmailedInvolvementSummaryRequest(CustomBaseModel):
     member_full_name: str
     preceding_months: Annotated[int, Field(ge=settings.min_preceding_months, le=settings.max_preceding_months)]
 
 
-class SendInvolvementSummaryEmailResult(SendInvolvementSummaryEmail):
+class EmailedInvolvementSummaryRequestResult(EmailedInvolvementSummaryRequest):
     masked_email_address: EmailStr

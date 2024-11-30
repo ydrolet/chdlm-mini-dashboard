@@ -18,16 +18,18 @@ function loadResidents() {
     const civicNumber = residentRowValues[0]
     const unitNumber = residentRowValues[1]
     const memberStatus = residentRowValues[2]
-    const emailAddress = residentRowValues[6]
+    const emailAddress = residentRowValues[6] || null
 
     if (!Object.values(statusMapping).includes(memberStatus)) {
       throw `Resident status "${memberStatus}" isn't recognized.`
     }
 
+    const address = memberStatus !== statusMapping.former ? new Address(civicNumber, unitNumber) : null
+
     const resident = new Resident(
       firstName,
       lastName,
-      memberStatus !== statusMapping.former ? new Address(civicNumber, unitNumber) : null,
+      address,
       memberStatus,
       emailAddress
     )

@@ -102,7 +102,7 @@ class Resident(CustomBaseModel):
     last_name: str
     address: Address | None = None
     member_status: MemberStatus
-    email_address: EmailStr
+    email_address: EmailStr | None = None
 
     @model_validator(mode='after')
     def check_former_member_address(self) -> Self:
@@ -123,10 +123,8 @@ class Member(Resident):
     involvement: YearlyInvolvement
 
     def get_involvement_slice(self, preceding_months_count: int) -> dict[Period, CommitteeInvolvement | None]:
-        interval = pendulum.interval(pendulum.now().subtract(months=preceding_months_count), pendulum.now())
+        interval = pendulum.interval(pendulum.now(), pendulum.now().subtract(months=preceding_months_count))
         periods = [Period(year=date.year, month=date.month) for date in interval.range('months')]
-        periods = list(reversed(periods[:-1]))
-
         return {period: self.involvement.get(period.year, {}).get(period.month, None) for period in periods}
 
 

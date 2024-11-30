@@ -1,5 +1,42 @@
 components:
   schemas:
+    EmailedInvolvementSummaryRequest:
+      additionalProperties: false
+      properties:
+        memberFullName:
+          title: Memberfullname
+          type: string
+        precedingMonths:
+          maximum: 24.0
+          minimum: 3.0
+          title: Precedingmonths
+          type: integer
+      required:
+      - memberFullName
+      - precedingMonths
+      title: EmailedInvolvementSummaryRequest
+      type: object
+    EmailedInvolvementSummaryRequestResult:
+      additionalProperties: false
+      properties:
+        maskedEmailAddress:
+          format: email
+          title: Maskedemailaddress
+          type: string
+        memberFullName:
+          title: Memberfullname
+          type: string
+        precedingMonths:
+          maximum: 24.0
+          minimum: 3.0
+          title: Precedingmonths
+          type: integer
+      required:
+      - memberFullName
+      - precedingMonths
+      - maskedEmailAddress
+      title: EmailedInvolvementSummaryRequestResult
+      type: object
     HTTPValidationError:
       properties:
         detail:
@@ -27,43 +64,6 @@ components:
       - maxPrecedingMonths
       - latestExtraction
       title: Info
-      type: object
-    SendInvolvementSummaryEmail:
-      additionalProperties: false
-      properties:
-        memberFullName:
-          title: Memberfullname
-          type: string
-        precedingMonths:
-          maximum: 24.0
-          minimum: 3.0
-          title: Precedingmonths
-          type: integer
-      required:
-      - memberFullName
-      - precedingMonths
-      title: SendInvolvementSummaryEmail
-      type: object
-    SendInvolvementSummaryEmailResult:
-      additionalProperties: false
-      properties:
-        maskedEmailAddress:
-          format: email
-          title: Maskedemailaddress
-          type: string
-        memberFullName:
-          title: Memberfullname
-          type: string
-        precedingMonths:
-          maximum: 24.0
-          minimum: 3.0
-          title: Precedingmonths
-          type: integer
-      required:
-      - memberFullName
-      - precedingMonths
-      - maskedEmailAddress
-      title: SendInvolvementSummaryEmailResult
       type: object
     ValidationError:
       properties:
@@ -98,14 +98,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SendInvolvementSummaryEmail'
+              $ref: '#/components/schemas/EmailedInvolvementSummaryRequest'
         required: true
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SendInvolvementSummaryEmailResult'
+                $ref: '#/components/schemas/EmailedInvolvementSummaryRequestResult'
           description: Successful Response
         '422':
           content:

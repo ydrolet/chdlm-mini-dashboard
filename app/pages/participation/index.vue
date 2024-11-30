@@ -8,7 +8,7 @@
       <template #content>
         <div class="flex flex-col items-center gap-7">
           <p>
-            Pour consulter votre bilan de participation, sélectionnez simplement votre nom dans la liste et cliquez sur <b>Envoyer par courriel</b>. Vous recevrez à votre courriel personnel l'information sur votre contribution à la coopérative.
+            Pour consulter votre bilan de participation, sélectionnez simplement votre nom dans la liste et cliquez sur <b>Envoyer le bilan à votre courriel</b>. Vous recevrez à votre courriel personnel l'information sur votre contribution à la coopérative.
           </p>
 
           <Form
@@ -23,7 +23,7 @@
                 <Select
                   v-model="selectedMemberName"
                   inputId="member-name"
-                  :options="membersNames ?? []"
+                  :options="membersNames?.toSorted((a, b) => a.localeCompare(b, 'fr')) ?? []"
                 />
                 <label for="member-name">Nom du résident</label>
               </FloatLabel>
@@ -67,7 +67,7 @@
             <tbody>
               <tr>
                 <th rowspan="2">
-                  <i class="pi pi-exclamation-triangle text-2xl text-orange-400" />
+                  <i class="pi pi-exclamation-triangle text-3xl text-orange-400" />
                 </th>
                 <td>
                   Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du résident. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
@@ -76,16 +76,15 @@
               <tr>
                 <td>
                   <div>
-                    Dû à une limitation technique, les données sont mises à jour aux 30 minutes. Plus de détails dans la page
+                    Dû à une limitation technique, il n'est pas possible de voir sur son bilan des données qui ont été mises à jour dans les 30 dernières minutes. Plus de détails dans la page
                     <NuxtLink
                       class="inline-hyperlink"
                       to="/participation/savoirplus"
                     >En savoir plus
                     </NuxtLink>
                   </div>
-                  <div class="pt-1 flex flex-wrap">
-                    <span>Dernière modification des données :&nbsp;</span>
-                    <span>{{ latestExtraction.format("LLL") }}</span>
+                  <div class="pt-1">
+                    La dernière modification des données remonte au {{ latestExtraction.format("D MMMM YYYY à H:mm") }}
                   </div>
                 </td>
               </tr>
@@ -116,12 +115,12 @@
           </div>
 
           <p class="text-center hyphens-none">
-            Si vous avez des questions, commentaires, suggestions ou problèmes, n'hésitez pas à écrire à
+            Si vous avez des questions, commentaires, suggestions ou problèmes, n'hésitez pas d'écrire à
             <NuxtLink
               class="inline-hyperlink"
-              to="mailto:participation@coopdelamontagne.com"
+              :to="`mailto:${involvementCommitteeEmailAddress}`"
             >
-              participation@coopdelamontagne.com
+              {{ involvementCommitteeEmailAddress }}
             </NuxtLink>
           </p>
         </div>
@@ -132,12 +131,14 @@
 
 <script setup lang="ts">
 import type {Dayjs} from "dayjs"
+import type {FetchError} from "ofetch"
+import {involvementCommitteeEmailAddress} from "~/utils"
 
 const {$chdlm} = useNuxtApp()
 const $dayjs = useDayjs()
 const $toast = useToast()
 
-const defaultPrecedingMonths = 3
+const defaultPrecedingMonths = 4
 
 const sendingEmail = ref(false)
 
@@ -162,17 +163,25 @@ const sendEmail = () => {
         if (response.ok) {
           $toast.add({
             severity: "success",
-            summary: `Le bilan a été envoyé avec succès à l'adresse courriel ${response._data.maskedEmailAddress}`,
-            life: 8000,
+            summary: `Le bilan a été envoyé à l'adresse courriel ${response._data.maskedEmailAddress}`,
+            life: 10000,
           })
         }
       }
-    }).catch(() => {
-      $toast.add({
-        severity: "error",
-        summary: "Une erreur est survenue lors de l'envoi du bilan à votre courriel",
-        life: 5000
-      })
+    }).catch((error: FetchError) => {
+      if (error.statusCode === 406) {
+        $toast.add({
+          severity: "warn",
+          summary: `Il n'y a aucune adresse courriel associée à votre nom. Contactez ${involvementCommitteeEmailAddress} pour demander d'ajouter votre adresse. Si vous voulez une version imprimée de votre bilan, contactez Yannick au 819-575-7366.`,
+        })
+      }
+      else {
+        $toast.add({
+          severity: "error",
+          summary: "Une erreur est survenue lors de l'envoi du bilan à votre courriel",
+          life: 6000
+        })
+      }
     }).finally(() => {
       sendingEmail.value = false
     })

@@ -86,11 +86,21 @@ export default defineNuxtConfig({
             toast: {
               colorScheme: {
                 dark: {
+                  info: {
+                    background: "color-mix(in srgb, var(--p-blue-800), transparent 15%)",
+                    color: "white",
+                  },
                   success: {
-                    background: "var(--p-green-950)"
+                    background: "color-mix(in srgb, var(--p-green-800), transparent 15%)",
+                    color: "white",
+                  },
+                  warn: {
+                    background: "color-mix(in srgb, var(--p-yellow-600), transparent 15%)",
+                    color: "white",
                   },
                   error: {
-                    background: "var(--p-rose-950)"
+                    background: "color-mix(in srgb, var(--p-red-800), transparent 15%)",
+                    color: "white",
                   }
                 }
               }
