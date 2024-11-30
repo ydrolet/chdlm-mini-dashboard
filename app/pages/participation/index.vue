@@ -56,7 +56,7 @@
               icon="pi pi-envelope"
               label="Envoyer le bilan à votre courriel"
               :loading="sendingEmail"
-              :disabled="!selectedMemberName"
+              :disabled="selectedMemberName === undefined"
             />
           </Form>
 
@@ -67,7 +67,7 @@
             <tbody>
               <tr>
                 <th rowspan="2">
-                  <i class="pi pi-exclamation-triangle text-3xl text-orange-400" />
+                  <i class="pi pi-exclamation-triangle text-orange-400" style="font-size: 1.8rem" />
                 </th>
                 <td>
                   Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du résident. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
@@ -147,7 +147,7 @@ const {data: info} = await useChdlm("/info/", {lazy: true, server: false})
 
 const latestExtraction = computed<Dayjs>(() => $dayjs(info.value?.latestExtraction))
 
-const selectedMemberName = useState<string | null>("selectedMemberName", () => null)
+const selectedMemberName = useState<string | undefined>("selectedMemberName", () => undefined)
 const selectedPrecedingMonths = useState<number>("selectedPrecedingMonths", () => defaultPrecedingMonths)
 
 const sendEmail = () => {

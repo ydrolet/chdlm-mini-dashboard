@@ -1,3 +1,0 @@
-# CHDLM Mini Dashboard
-
-README content coming soon ...

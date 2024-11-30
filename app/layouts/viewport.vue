@@ -7,7 +7,7 @@
           key="back-button"
           to="/participation"
         >
-          <i class="pi pi-arrow-left rounded text-sm p-1.5 hover:bg-emphasis transition-all duration-300" />
+          <i class="pi pi-arrow-left rounded p-2.5 hover:bg-emphasis transition-all duration-300" />
         </NuxtLink>
 
         <img
