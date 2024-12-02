@@ -13,7 +13,6 @@ pendulum = "^3.0.0"
 pydantic = "^2.9.2"
 pydantic-extra-types = "^2.9.0"
 pydantic-settings = "^2.5.2"
-sendgrid = "^6.11.0"
 supabase = "^2.7.4"
 pyyaml = "^6.0.2"
 

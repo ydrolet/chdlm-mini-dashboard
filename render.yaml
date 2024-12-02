@@ -37,11 +37,11 @@ services:
         sync: false
       - key: SUPABASE_SERVICE_ACCOUNT_JWT
         sync: false
-      - key: SENDGRID_API_KEY
+      - key: MAILGUN_API_KEY
+        sync: false
+      - key: MAILGUN_DOMAIN_NAME
         sync: false
       - key: FROM_NAME
         value: Comité de Participation
       - key: FROM_EMAIL_ADDRESS
         value: participation@coopdelamontagne.com
-      - key: REPLY_TO_EMAIL_ADDRESS
-        sync: false

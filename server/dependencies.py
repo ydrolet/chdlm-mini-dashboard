@@ -1,10 +1,10 @@
 from typing import Annotated
 
 from fastapi import Depends
-from sendgrid import SendGridAPIClient
 from supabase import create_client, Client, ClientOptions
 
 from server.managers.chdlm_involvement import ChdlmInvolvementManager
+from server.services.mailgun import MailgunClient
 from server.settings import settings
 
 
@@ -16,15 +16,18 @@ def get_supabase_api_client() -> Client:
     )
 
 
-def get_sendgrid_api_client() -> SendGridAPIClient:
-    return SendGridAPIClient(api_key=settings.sendgrid_api_key)
+def get_mailgun_api_client() -> MailgunClient:
+    return MailgunClient(
+        api_key=settings.mailgun_api_key,
+        domain_name=settings.mailgun_domain_name,
+    )
 
 
 def get_chdlm_involvement_manager(
         supabase_api_client: Annotated[Client, Depends(get_supabase_api_client)],
-        sendgrid_api_client: Annotated[SendGridAPIClient, Depends(get_sendgrid_api_client)],
+        mailgun_api_client: Annotated[MailgunClient, Depends(get_mailgun_api_client)],
 ) -> ChdlmInvolvementManager:
     return ChdlmInvolvementManager(
         supabase_api_client,
-        sendgrid_api_client,
+        mailgun_api_client,
     )

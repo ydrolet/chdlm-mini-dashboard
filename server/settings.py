@@ -7,10 +7,10 @@ class Settings(BaseSettings):
     supabase_api_key: str
     supabase_service_account_jwt: str
 
-    sendgrid_api_key: str
+    mailgun_api_key: str
+    mailgun_domain_name: str
     from_email_address: EmailStr
     from_name: str
-    reply_to_email_address: EmailStr
     debug_recipient_email_address: EmailStr | None = None
 
     min_preceding_months: int = 3

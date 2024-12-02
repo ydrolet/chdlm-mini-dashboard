@@ -66,7 +66,7 @@
           >
             <tbody>
               <tr>
-                <th rowspan="2">
+                <th rowspan="3">
                   <i class="pi pi-exclamation-triangle text-orange-400" style="font-size: 1.8rem" />
                 </th>
                 <td>
@@ -86,6 +86,11 @@
                   <div class="pt-1">
                     La dernière modification des données remonte au {{ latestExtraction.format("D MMMM YYYY à H:mm") }}
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Le courriel a des chances d'être considéré comme du pourriel.
                 </td>
               </tr>
             </tbody>
@@ -196,10 +201,6 @@ const sendEmail = () => {
 
   th {
     padding-right: 1rem;
-  }
-
-  td {
-    text-align: justify;
   }
 }
 </style>
