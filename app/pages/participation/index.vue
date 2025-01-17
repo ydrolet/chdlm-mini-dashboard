@@ -60,41 +60,43 @@
             />
           </Form>
 
-          <table
-            id="notices-table"
-            class="text-sm"
-          >
-            <tbody>
-              <tr>
-                <th rowspan="3">
-                  <i class="pi pi-exclamation-triangle text-orange-400" style="font-size: 1.8rem" />
-                </th>
-                <td>
-                  Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du résident. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div>
-                    Dû à une limitation technique, il n'est pas possible de voir sur son bilan des données qui ont été mises à jour dans les 30 dernières minutes. Plus de détails dans la page
-                    <NuxtLink
-                      class="inline-hyperlink"
-                      to="/participation/savoirplus"
-                    >En savoir plus
-                    </NuxtLink>
-                  </div>
-                  <div class="pt-1">
-                    La dernière modification des données remonte au {{ latestExtraction.format("D MMMM YYYY à H:mm") }}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Le courriel a des chances d'être considéré comme du pourriel.
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="border-solid border-2 rounded-xl p-2 border-orange-900 bg-orange-900 bg-opacity-10">
+            <table
+              id="notices-table"
+              class="text-sm"
+            >
+              <tbody>
+                <tr>
+                  <th rowspan="3">
+                    <i class="pi pi-exclamation-triangle text-orange-400" style="font-size: 1.8rem" />
+                  </th>
+                  <td>
+                    Même s'il n'y a pas d'authentification pour le moment, les infos resteront toujours privées car elles iront toujours à l'adresse courriel personnelle du résident. <b>N'abusez pas en envoyant des courriels à n'importe qui.</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>
+                      Dû à une limitation technique, il n'est pas possible de voir sur son bilan des données qui ont été mises à jour dans les 30 dernières minutes. Plus de détails dans la page
+                      <NuxtLink
+                        class="inline-hyperlink"
+                        to="/participation/savoirplus"
+                      >En savoir plus
+                      </NuxtLink>
+                    </div>
+                    <div class="pt-1">
+                      La dernière modification des données remonte au {{ latestExtraction.format("D MMMM YYYY à H:mm") }}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Le courriel a des chances d'être considéré comme du pourriel.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="flex flex-col gap-5 w-80 hyphens-none">
             <NuxtLink to="/participation/pourquoi">
