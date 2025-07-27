@@ -77,6 +77,7 @@ const committeesTimesheetsIds = {
   "Conseil d'administration": "***********************",
   "Équipe Café du village": "***********************",
   "Projets spéciaux": "***********************",
+  "Sous-comité animaux": "***********************",
 }
 
 
