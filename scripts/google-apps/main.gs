@@ -238,26 +238,12 @@ function extractDataThenWriteToDatabase(onlyIfDataChanged = false) {
   const data = extractInvolvementData()
 
   if (data.extractionInfo.log.find(e => e.level === "warning" || e.level === "error")) {
-    UrlFetchApp.fetch("https://api.sendgrid.com/v3/mail/send", {
-      method: "post",
-      headers: {
-        Authorization: `Bearer ${envVars.sendgrid.apiKey}`
-      },
-      contentType: "application/json",
-      payload: JSON.stringify({
-        personalizations: [{
-          to: [{ email: envVars.sendgrid.toEmail }],
-          subject: "Warnings or errors in the latest CHDLM involvement data extraction"
-        }],
-        from: {
-          email: envVars.sendgrid.fromEmail,
-          name: envVars.sendgrid.fromName
-        },
-        content: [{
-          type: "text/plain",
-          value: JSON.stringify(data.extractionInfo.log, null, "  ")
-        }]
-      })
+    MailApp.sendEmail({
+      to: envVars.mailApp.toEmail,
+      name: envVars.mailApp.fromName,
+      subject: "Warnings or errors in the latest CHDLM involvement data extraction",
+      body: JSON.stringify(data.extractionInfo.log, null, "  "),
+      noReply: true,
     })
   }
 

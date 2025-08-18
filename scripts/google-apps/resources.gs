@@ -100,11 +100,9 @@ function getEnvVars() {
       publicApiKey: userProps.getProperty("supabasePublicApiKey"),
       miniDashboardServiceAccountJwt: userProps.getProperty("supabaseMiniDashboardServiceAccountJwt")
     },
-    sendgrid: {
-      apiKey: userProps.getProperty("sendgridApiKey"),
-      toEmail: userProps.getProperty("sendgridToEmail"),
-      fromEmail: userProps.getProperty("sendgridFromEmail"),
-      fromName: userProps.getProperty("sendgridFromName")
+    mailApp: {
+      toEmail: userProps.getProperty("mailAppToEmail"),
+      fromName: userProps.getProperty("mailAppFromName")
     }
   }
 
@@ -116,16 +114,12 @@ function getEnvVars() {
     throw "Supabase tokens must be correctly set."
   }
 
-  if (envVars.sendgrid.apiKey === null) {
-    throw "SendGrid API key must be correctly set."
+  if (envVars.mailApp.toEmail === null) {
+    throw "MailApp 'To' email address must be correctly set."
   }
 
-  if (envVars.sendgrid.toEmail === null) {
-    throw "SendGrid 'To' email address must be correctly set."
-  }
-
-  if (envVars.sendgrid.fromEmail === null || envVars.sendgrid.fromName === null) {
-    throw "SendGrid 'From' email address, with name, must be correctly set."
+  if (envVars.mailApp.fromEmail === null || envVars.mailApp.fromName === null) {
+    throw "MailApp 'From' email address, with name, must be correctly set."
   }
 
   return envVars
