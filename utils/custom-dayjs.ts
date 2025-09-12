@@ -1,11 +1,11 @@
 import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
-import localizedFormat from "dayjs/plugin/localizedFormat"
-import duration from "dayjs/plugin/duration"
+import utc from "dayjs/plugin/utc.js"
+import timezone from "dayjs/plugin/timezone.js"
+import localizedFormat from "dayjs/plugin/localizedFormat.js"
+import duration from "dayjs/plugin/duration.js"
 
-import "dayjs/locale/en-ca"
-import "dayjs/locale/fr-ca"
+import "dayjs/locale/en-ca.js"
+import "dayjs/locale/fr-ca.js"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
