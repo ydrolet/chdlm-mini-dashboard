@@ -51,7 +51,8 @@ export default defineNuxtConfig({
     serverAssets: [{
       baseName: "templates",
       dir: "./templates"
-    }]
+    }],
+    preset: "vercel",
   },
 
   typescript: {
