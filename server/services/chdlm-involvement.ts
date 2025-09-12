@@ -49,7 +49,9 @@ export class ChdlmInvolvementService {
     const monthlyInvolvement = member.monthlyInvolvement(precedingMonthsCount)
     const grandTotal = monthlyInvolvement.reduce((acc, curr) => acc + curr.totalHours, 0)
 
-    const mjmlTemplate = (await this.serverAssets.getItem("involvement-summary.mjml"))?.toString()
+    const mjmlTemplate = Buffer.from(
+      (await this.serverAssets.getItem("involvement-summary.mjml")) as Uint8Array)
+      .toString("utf-8")
     if (!mjmlTemplate) throw new Error("MJML template file not found.")
 
     const renderedMjml = nunjucks.renderString(mjmlTemplate, {
