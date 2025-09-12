@@ -47,7 +47,7 @@ function extractInvolvementData(precedingYears = 2) {
     t0 = new Date().getTime()
     log.info(`Loading spreadsheets...`)
 
-    const allMembers = objectMap(loadResidents(), v => new Member(v.firstName, v.lastName, v.address, v.memberStatus, v.emailAddress))
+    const allMembers = loadResidents().map(r => new Member(r.firstName, r.lastName, r.address, r.memberStatus, r.emailAddress))
     allInvolvementTimesheetsLastUpdated = getInvolvementTimesheetsLastUpdated()
     const allInvolvementTimesheets = loadInvolvementTimesheets()
 
@@ -143,7 +143,7 @@ function extractInvolvementData(precedingYears = 2) {
             continue
           }
 
-          if (!allMembers.hasOwnProperty(memberFullNameInTimesheet)) {
+          if (allMembers.find(m => m.fullName === memberFullNameInTimesheet) === undefined) {
             log.warn(`Member name "${memberFullNameInTimesheet}" is unrecognized in the committees "${committeeName}" on year ${year}`)
             continue
           }
@@ -162,7 +162,7 @@ function extractInvolvementData(precedingYears = 2) {
 
             switch (typeof hourEntry) {
               case 'number':
-                allMembers[memberFullNameInTimesheet].addAccomplishedTask(
+                allMembers.find(m => m.fullName === memberFullNameInTimesheet).addAccomplishedTask(
                   committeeName,
                   { year, month },
                   new AccomplishedTask(taskName, hourEntry, noteEntry)

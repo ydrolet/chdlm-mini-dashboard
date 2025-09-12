@@ -8,8 +8,7 @@ function loadResidents() {
 
   const residentsRangeValues = allResidentsSheet.getRange('residentsList').getValues().filter(row => !row.every(value => value === ""))
 
-  const unsortedallResidents = []
-  const allResidents = {}
+  const unsortedAllResidents = []
 
   for (const residentRowValues of residentsRangeValues) {
     const firstName = residentRowValues[3]
@@ -38,10 +37,10 @@ function loadResidents() {
       throw `Resident "${resident.fullName}" doesn't match full name used in timesheets dropdowns`
     }
 
-    unsortedallResidents.push(resident)
+    unsortedAllResidents.push(resident)
   }
 
-  const sortedResidents = unsortedallResidents.sort((a, b) => {
+  const sortedResidents = unsortedAllResidents.sort((a, b) => {
     if (a.fullName < b.fullName) {
       return -1
     }
@@ -51,11 +50,7 @@ function loadResidents() {
     return 0
   })
 
-  for (const t of sortedResidents) {
-    allResidents[t.fullName] = t
-  }
-
-  return allResidents
+  return sortedResidents
 }
 
 
