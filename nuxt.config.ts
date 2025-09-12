@@ -45,23 +45,13 @@ export default defineNuxtConfig({
     port: 9185,
   },
 
-  compatibilityDate: "2025-05-15",
+  compatibilityDate: "2025-07-15",
 
   nitro: {
     serverAssets: [{
       baseName: "templates",
       dir: "./templates"
     }]
-  },
-
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: "modern",
-        }
-      }
-    }
   },
 
   typescript: {
