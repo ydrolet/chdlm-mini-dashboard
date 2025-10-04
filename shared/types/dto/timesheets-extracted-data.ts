@@ -2,6 +2,7 @@ import z from "zod"
 import {Z} from "zod-class"
 import _ from "lodash"
 import {customDayjs} from "#shared/utils/custom-dayjs"
+import {type MonthlyInvolvement, Period} from "#shared/types/involvement"
 
 const dayjsSchema = z.string().datetime({offset: true}).transform(date => customDayjs(date))
 const durationSchema = z.number().transform(secs => customDayjs.duration({seconds: secs}))
