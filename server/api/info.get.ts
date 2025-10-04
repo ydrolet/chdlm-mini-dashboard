@@ -1,5 +1,4 @@
-import type {Info} from "~/types/info"
-import {createChdlmInvolvementService} from "~/server/utils"
+import {createChdlmInvolvementService} from "~~/server/utils"
 
 export default defineEventHandler<Promise<Info>>(async (event) => {
   const involvementService = createChdlmInvolvementService(event)

@@ -1,5 +1,5 @@
-import {MemberStatus} from "~/types/dto/timesheets-extracted-data"
-import {createChdlmInvolvementService} from "~/server/utils"
+import {MemberStatus} from "#shared/types/dto/timesheets-extracted-data"
+import {createChdlmInvolvementService} from "~~/server/utils"
 
 export default defineEventHandler<Promise<string[]>>(async (event) => {
   const involvementService = createChdlmInvolvementService(event)

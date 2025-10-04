@@ -1,5 +1,4 @@
 import z from "zod"
-import {MIN_PRECEDING_MONTHS, MAX_PRECEDING_MONTHS} from "~/utils/constants"
 
 export const EmailedInvolvementSummaryRequestSchema = z.object({
   memberFullName: z.string(),

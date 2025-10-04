@@ -137,11 +137,9 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from "~/utils/custom-dayjs"
 import type {Dayjs} from "dayjs"
 import type {FetchError} from "ofetch"
 import {useInfo, useMembersNames, useSendMail} from "~/composables/api"
-import {MIN_PRECEDING_MONTHS, MAX_PRECEDING_MONTHS, INVOLVEMENT_COMMITTEE_EMAIL_ADDRESS} from "~/utils/constants"
 
 const $toast = useToast()
 
@@ -152,7 +150,7 @@ const sendingEmail = ref(false)
 const {data: membersNames} = await useMembersNames()
 const {data: info} = await useInfo()
 
-const latestExtraction = computed<Dayjs | undefined>(() => info.value?.latestExtraction ? dayjs(info.value?.latestExtraction) : undefined)
+const latestExtraction = computed<Dayjs | undefined>(() => info.value?.latestExtraction ? customDayjs(info.value?.latestExtraction) : undefined)
 
 const selectedMemberName = useState<string | undefined>("selectedMemberName", () => undefined)
 const selectedPrecedingMonths = useState<number>("selectedPrecedingMonths", () => defaultPrecedingMonths)

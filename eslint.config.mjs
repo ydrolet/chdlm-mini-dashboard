@@ -13,6 +13,6 @@ export default withNuxt([
     },
   },
   {
-    ignores: ["types/database.types.ts"],
+    ignores: ["shared/types/database.types.ts"],
   },
 ])

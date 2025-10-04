@@ -1,9 +1,8 @@
 import type {SupabaseClient} from "@supabase/supabase-js"
-import type {MailService} from "~/types/services"
-import {humanizeAddress, type Member, TimesheetsExtractedData} from "~/types/dto/timesheets-extracted-data"
+import {humanizeAddress, type Member, TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-data"
 import nunjucks from "nunjucks"
 import mjml2html from "mjml"
-import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~/server/utils/errors"
+import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~~/server/utils/errors"
 
 export class ChdlmInvolvementService {
   private serverAssets = useStorage("assets:templates")
@@ -20,7 +19,7 @@ export class ChdlmInvolvementService {
       .select("extracted_data")
       .order("created_at", {ascending: false})
       .limit(1)
-    const extractedInvolvementData = TimesheetsExtractedData.parse(data?.[0]["extracted_data"])
+    const extractedInvolvementData = TimesheetsExtractedData.parse(data?.[0]?.["extracted_data"])
     console.info("Timesheets extracted data successfully loaded.")
     return extractedInvolvementData
   }

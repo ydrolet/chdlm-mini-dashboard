@@ -1,5 +1,3 @@
-import type {MailService} from "~/types/services"
-
 export class MailgunService implements MailService {
   constructor(
     private mailgunApiKey: string,

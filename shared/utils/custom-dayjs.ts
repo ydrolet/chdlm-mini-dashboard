@@ -15,4 +15,4 @@ dayjs.extend(duration)
 dayjs.locale("fr-ca")
 dayjs.tz.setDefault("America/Toronto")
 
-export default dayjs
+export {dayjs as customDayjs}

@@ -1,5 +1,4 @@
-import type {Info} from "~/types/info"
-import type {EmailedInvolvementSummaryRequest, EmailedInvolvementSummaryRequestResult} from "~/types/dto/commands"
+import type {EmailedInvolvementSummaryRequest, EmailedInvolvementSummaryRequestResult} from "#shared/types/dto/commands"
 
 export function useInfo() {
   return useFetch<Info>("/api/info")
