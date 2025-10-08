@@ -4,15 +4,14 @@ import timezone from "dayjs/plugin/timezone.js"
 import localizedFormat from "dayjs/plugin/localizedFormat.js"
 import duration from "dayjs/plugin/duration.js"
 
-import "dayjs/locale/en-ca.js"
-import "dayjs/locale/fr-ca.js"
+import frCa from "dayjs/locale/fr-ca.js"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(localizedFormat)
 dayjs.extend(duration)
 
-dayjs.locale("fr-ca")
+dayjs.locale(frCa)
 dayjs.tz.setDefault("America/Toronto")
 
-export {dayjs as customDayjs}
+export default dayjs

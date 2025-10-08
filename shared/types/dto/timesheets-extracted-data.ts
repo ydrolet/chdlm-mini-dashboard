@@ -1,10 +1,10 @@
 import z from "zod"
 import {Z} from "zod-class"
 import _ from "lodash"
-import {customDayjs} from "#shared/utils/custom-dayjs"
+import customDayjs from "#shared/utils/custom-dayjs"
 import {type MonthlyInvolvement, Period} from "#shared/types/involvement"
 
-const dayjsSchema = z.string().datetime({offset: true}).transform(date => customDayjs(date))
+const dayjsSchema = z.string().datetime({offset: true}).transform(date => customDayjs(date).tz())
 const durationSchema = z.number().transform(secs => customDayjs.duration({seconds: secs}))
 
 export enum LogLevel {
@@ -117,7 +117,7 @@ export class Member extends Resident.extend({
 
   monthlyInvolvement(precedingMonthsCount: number): MonthlyInvolvement[] {
     const periods: Period[] = []
-    let cursor = customDayjs()
+    let cursor = customDayjs().tz()
     do {
       periods.push(new Period(cursor.year(), cursor.month() + 1))
       cursor = cursor.subtract(1, "month")

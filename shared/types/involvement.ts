@@ -1,4 +1,4 @@
-import {customDayjs} from "#shared/utils/custom-dayjs"
+import customDayjs from "#shared/utils/custom-dayjs"
 import type {AccomplishedTask} from "#shared/types/dto/timesheets-extracted-data"
 
 export class Period {
