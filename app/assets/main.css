@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+@theme {
+  --font-sans: "Inter", "Helvetica", "Arial", "sans-serif";
+}
+
+p {
+  padding: 0.5rem 0;
+}
+
+.inline-hyperlink {
+  font-weight: bold;
+  color: var(--color-violet-500);
+}

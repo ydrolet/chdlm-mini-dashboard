@@ -1,0 +1,149 @@
+<mjml>
+    <mj-head>
+        <mj-attributes>
+            <mj-all font-family="Ubuntu" font-size="13px"/>
+            <mj-class name="tasks-table-divider" border-width="4px" border-color="#F1F3C2"/>
+            <mj-class name="month-title" align="center" font-size="16px" font-weight="bold" font-style="italic"
+                      padding-top="0" text-transform="capitalize"/>
+            <mj-class name="committee-title" font-weight="bold" padding-bottom="0"/>
+            <mj-class name="hours-table" padding-left="55px" table-layout="fixed" padding-top="6px"/>
+            <mj-class name="month-total-hours" font-size="14px" padding-top="10px"/>
+            <mj-class name="grand-total-hours" font-size="21px"/>
+            <mj-class name="no-data" align="center"/>
+        </mj-attributes>
+        <mj-style inline="inline">
+            .task-row > td {
+                padding-bottom: 10px;
+            }
+
+            .task-row-total {
+                padding: 5px 0;
+                border-top: 1px solid black;
+            }
+
+            .hours-table-layout-left-column {
+                width: 75%;
+                text-align: right;
+            }
+
+            .hours-table-layout-right-column {
+                width: 25%;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .total-month-hours {
+                background-color: #F1F3C2;
+            }
+
+            .total-month-hours-cell {
+                padding: 4px 0;
+            }
+        </mj-style>
+    </mj-head>
+
+    <mj-body width="400px">
+        <mj-section padding-bottom="0" border-bottom="3px solid #E8B86D">
+            <mj-group>
+                <mj-column width="40%" vertical-align="middle">
+                    <mj-image
+                        padding="0"
+                        align="right"
+                        width="90px"
+                        src="https://coopdelamontagne.com/wp-content/uploads/2024/08/logo_cdlm_haute_resolution_sans_titre_avec_bordure.png"
+                    />
+                </mj-column>
+                <mj-column vertical-align="middle">
+                    <mj-text align="left" font-size="18px" font-weight="bold">
+                        Coopérative d'Habitation de la Montagne
+                    </mj-text>
+                </mj-column>
+            </mj-group>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-text align="center" font-size="20px" font-weight="bold" padding-top="0">
+                    Bilan de participation de<br>{{ member.fullName }} ({{ humanizeAddress(member.address) }})
+                </mj-text>
+                <mj-text align="center" font-size="14px" padding-top="0" padding-bottom="0">
+                    <p>
+                        Bilan basé sur les données dont la dernière modification a été faite le <b>{{ latestExtraction }}</b>. Si vous constatez que des données ne correspondent pas à ce que vous avez réalisé réellement, contactez la/le responsable de votre comité pour qu'elle/il apporte des corrections.
+                    </p>
+                    <p>
+                        Si vous constatez d'autres problèmes, ou avez des commentaires/suggestions, contactez<br><a href="mailto:participation@coopdelamontagne.com">participation@coopdelamontagne.com</a>
+                    </p>
+                </mj-text>
+                <mj-divider mj-class="tasks-table-divider" padding-bottom="0"/>
+            </mj-column>
+        </mj-section>
+
+        {% for month in monthlyInvolvement %}
+        <mj-section padding-top="0" padding-bottom="14px">
+            <mj-column>
+                <mj-text mj-class="month-title">
+                    {{ month.period }}
+                </mj-text>
+
+                {% if month.involvement %}
+                {% for committeeName, tasks in month.involvement %}
+                <mj-text mj-class="committee-title">
+                    {{ committeeName }}
+                </mj-text>
+                <mj-table mj-class="hours-table">
+                    {% for task in tasks %}
+                    <tr class="task-row">
+                        <td class="hours-table-layout-left-column">
+                            {{ task.taskName }}
+                            {% if task.note != "" %}
+                            <i>({{ task.note }})</i>
+                            {% endif %}
+                        </td>
+                        <td class="hours-table-layout-right-column">{{ task.hoursSpent }} h</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="task-row">
+                        <td class="hours-table-layout-left-column"/>
+                        <td class="hours-table-layout-right-column task-row-total">
+                            {{ member.involvementStats.totalHoursPerCommittee[month.period.year][month.period.month][committeeName] }} h
+                        </td>
+                    </tr>
+                </mj-table>
+                {% endfor %}
+
+                <mj-table mj-class="hours-table month-total-hours">
+                    <tr class="total-month-hours">
+                        <td class="hours-table-layout-left-column total-month-hours-cell">
+                            Total pour {{ month.period }}
+                        </td>
+                        <td class="hours-table-layout-right-column total-month-hours-cell">
+                            {{ member.involvementStats.totalHoursPerMonth[month.period.year][month.period.month] }} h
+                        </td>
+                    </tr>
+                </mj-table>
+                {% else %}
+                <mj-text mj-class="no-data">
+                    Aucune donnée n'existe pour ce mois
+                </mj-text>
+                {% endif %}
+                <mj-divider mj-class="tasks-table-divider"/>
+            </mj-column>
+        </mj-section>
+        {% endfor %}
+
+        <mj-section padding-top="5px">
+            <mj-column>
+                <mj-table mj-class="hours-table grand-total-hours">
+                    <tr class="total-month-hours">
+                        <td class="hours-table-layout-left-column total-month-hours-cell">
+                            Grand total
+                        </td>
+                        <td class="hours-table-layout-right-column total-month-hours-cell">
+                            {{ grandTotal }} h
+                        </td>
+                    </tr>
+                </mj-table>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>

@@ -1,0 +1,49 @@
+{
+  "name": "chdlm-mini-dashboard",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "gen-supabase-types": "env-cmd -x -- supabase gen types typescript --project-id \\$SUPABASE_PROJECT_ID > shared/types/database.types.ts"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/fonts": "^0.11.4",
+    "@nuxtjs/device": "^3.2.4",
+    "@nuxtjs/supabase": "^2.0.1",
+    "@primevue/forms": "^4.4.1",
+    "@primevue/nuxt-module": "^4.4.1",
+    "@primevue/themes": "^4.4.1",
+    "dayjs": "^1.11.18",
+    "eslint": "^9.37.0",
+    "lodash": "^4.17.21",
+    "mjml": "^4.16.1",
+    "nunjucks": "^3.2.4",
+    "nuxt": "^4.1.3",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.4.1",
+    "tailwindcss": "^4.1.14",
+    "tailwindcss-primeui": "^0.6.1",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1",
+    "zod": "^3.25.76",
+    "zod-class": "^0.0.18"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/lodash": "^4",
+    "@types/mjml": "^4",
+    "@types/nunjucks": "^3",
+    "env-cmd": "^10.1.0",
+    "supabase": "^2.51.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vite-plugin-eslint2": "^5.0.4",
+    "vue-tsc": "^3.1.1"
+  },
+  "packageManager": "yarn@4.10.3"
+}
