@@ -18,6 +18,8 @@
     "@primevue/forms": "^4.4.1",
     "@primevue/nuxt-module": "^4.4.1",
     "@primevue/themes": "^4.4.1",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "dayjs": "^1.11.18",
     "eslint": "^9.37.0",
     "lodash": "^4.17.21",

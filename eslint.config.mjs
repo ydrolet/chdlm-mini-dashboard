@@ -9,7 +9,8 @@ export default withNuxt([
       "@stylistic/object-curly-spacing": "off",
       "vue/singleline-html-element-content-newline": "off",
       "vue/attribute-hyphenation": "off",
-      "vue/max-attributes-per-line": ["error", {singleline: {max: 2}, multiline: {max: 2}}]
+      "vue/max-attributes-per-line": ["error", {singleline: {max: 2}, multiline: {max: 2}}],
+      "vue/no-multiple-template-root": "off",
     },
   },
   {

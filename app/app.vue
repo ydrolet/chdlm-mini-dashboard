@@ -1,9 +1,14 @@
 <template>
+  <Analytics />
   <Toast position="bottom-center" />
   <NuxtLayout name="viewport">
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+import {Analytics} from "@vercel/analytics/nuxt"
+</script>
 
 <style scoped>
 .page-enter-active,
