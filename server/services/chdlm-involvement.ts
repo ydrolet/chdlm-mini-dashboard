@@ -14,18 +14,18 @@ export class ChdlmInvolvementService {
   }
 
   async getTimesheetExtractedData(): Promise<TimesheetsExtractedData> {
-    console.info("Loading timesheets extracted data...")
+    console.time("Loading of timesheets extracted data from database")
     const {data} = await this.db.from("google_sheets_extracted_data")
       .select("extracted_data")
       .order("created_at", {ascending: false})
       .limit(1)
-    const extractedInvolvementData = TimesheetsExtractedData.parse(data?.[0]?.["extracted_data"])
-    console.info("Timesheets extracted data successfully loaded.")
-    return extractedInvolvementData
-  }
+    console.timeEnd("Loading of timesheets extracted data from database")
 
-  async getMembersInvolvementData(): Promise<Member[]> {
-    return (await this.getTimesheetExtractedData()).data
+    console.time("Parsing of timesheets extracted data")
+    const extractedInvolvementData = TimesheetsExtractedData.parse(data?.[0]?.["extracted_data"])
+    console.timeEnd("Parsing of timesheets extracted data")
+
+    return extractedInvolvementData
   }
 
   async sendInvolvementSummaryEmail(

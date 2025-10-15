@@ -22,7 +22,7 @@
               <Select
                 v-model="selectedMemberName"
                 inputId="member-name"
-                :options="membersNames?.toSorted((a, b) => a.localeCompare(b, 'fr')) ?? []"
+                :options="info?.membersNames?.toSorted((a, b) => a.localeCompare(b, 'fr')) ?? []"
               />
               <label for="member-name">Nom du résident</label>
             </FloatLabel>
@@ -136,7 +136,7 @@
 <script setup lang="ts">
 import type {Dayjs} from "dayjs"
 import type {FetchError} from "ofetch"
-import {useInfo, useMembersNames, useSendMail} from "~/composables/api"
+import {useInfo, useSendMail} from "~/composables/api"
 
 const $toast = useToast()
 
@@ -144,7 +144,6 @@ const defaultPrecedingMonths = 4
 
 const sendingEmail = ref(false)
 
-const {data: membersNames} = await useMembersNames()
 const {data: info} = await useInfo()
 
 const latestExtraction = computed<Dayjs | undefined>(() => info.value?.latestExtraction ? customDayjs(info.value?.latestExtraction) : undefined)
