@@ -1,6 +1,4 @@
 <template>
-  <Analytics />
-  <SpeedInsights />
   <Toast position="bottom-center" />
   <div class="app-container">
     <header class="flex flex-row items-center gap-2.5 min-h-12 px-2 bg-surface-900">
@@ -39,9 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import {Analytics} from "@vercel/analytics/nuxt"
-import {SpeedInsights} from "@vercel/speed-insights/vue"
-
 const $route = useRoute()
 const $nuxtApp = useNuxtApp()
 const mainElement = useTemplateRef("main-element")

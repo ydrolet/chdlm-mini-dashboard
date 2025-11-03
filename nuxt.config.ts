@@ -51,7 +51,6 @@ export default defineNuxtConfig({
       baseName: "templates",
       dir: "./templates"
     }],
-    preset: "vercel",
   },
 
   vite: {
