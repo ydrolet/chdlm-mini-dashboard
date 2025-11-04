@@ -40,6 +40,10 @@ export default defineNuxtConfig({
     debugRecipientEmailAddress: undefined,
   },
 
+  routeRules: {
+    "/participation/**": {redirect: "/"}, // Accommodation for legacy URL structure
+  },
+
   devServer: {
     port: 9185,
   },

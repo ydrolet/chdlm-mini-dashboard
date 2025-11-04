@@ -62,6 +62,10 @@ export class ChdlmInvolvementService {
     })
     const renderedHtml = mjml2html(renderedMjml)
 
+    if (config.debugRecipientEmailAddress) {
+      console.warn(`Sending email to debugRecipientEmailAddress (${config.debugRecipientEmailAddress})`)
+    }
+
     const result = await this.mailer.sendEmail(
       {name: config.fromName, email: config.fromEmailAddress},
       config.debugRecipientEmailAddress || member.emailAddress,
@@ -69,7 +73,12 @@ export class ChdlmInvolvementService {
       renderedHtml.html,
     )
 
-    if (!result.ok) {
+    if (result.ok) {
+      console.info(`Email sent to ${member.fullName} (${member.emailAddress}) for `
+        + `involvement summary over ${precedingMonthsCount} months`)
+    }
+    else {
+      console.error(`Error when sending email to ${member.fullName} (${member.emailAddress})`)
       throw new EmailSendingError("Une erreur s'est produite lors de l'envoi du courriel.")
     }
 

@@ -1,7 +1,7 @@
 import type {EmailedInvolvementSummaryRequest, EmailedInvolvementSummaryRequestResult} from "#shared/types/dto/commands"
 
 export function useInfo() {
-  return useLazyFetch<Info>("/api/info")
+  return useLazyFetch<Info>("/api/info", {server: false})
 }
 
 export function useSendMail(body: EmailedInvolvementSummaryRequest) {
