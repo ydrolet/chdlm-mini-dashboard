@@ -60,6 +60,7 @@ const committeesTimesheetsIds = {
   "Comité d'entretien extérieur": "***********************",
   "Comité d'entretien intérieur": "***********************",
   "Comité d'informatique": "***********************",
+  "Comité de coordination-participation": "***********************",
   "Comité de maintenance": "***********************",
   "Comité de participation": "***********************",
   "Comité de piscine": "***********************",
