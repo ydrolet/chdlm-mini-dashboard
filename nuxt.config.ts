@@ -33,6 +33,8 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    mongodbUri: undefined,
+    apiKey: undefined,
     fromEmailAddress: undefined,
     fromName: undefined,
     mailgunApiKey: undefined,
