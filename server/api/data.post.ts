@@ -2,7 +2,6 @@ import {TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-da
 import {createTimesheetExtractedDataDbService, defineEventHandlerWithAuth} from "~~/server/utils"
 
 export default defineEventHandlerWithAuth(async (event) => {
-  const result = await readValidatedBody(event, body => TimesheetsExtractedData.safeParse(body))
-  if (!result.success) throw createError({statusCode: 400, statusMessage: JSON.stringify(result.error.issues)})
-  await (await createTimesheetExtractedDataDbService()).insertData(result.data)
+  const body = await readValidatedBody(event, b => TimesheetsExtractedData.parse(b))
+  await (await createTimesheetExtractedDataDbService()).insertData(body)
 })

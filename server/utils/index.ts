@@ -33,12 +33,7 @@ export function defineEventHandlerWithAuth<T extends EventHandlerRequest, D>(
       throw createError({statusCode: 401, statusMessage: "Unauthorized API key."})
     }
 
-    try {
-      const response = await handler(event)
-      return {response}
-    }
-    catch (err) {
-      return {err}
-    }
+    const response = await handler(event)
+    return {response}
   })
 }
