@@ -1,9 +1,12 @@
-import {type Collection, type Db, MongoClient} from "mongodb"
+import {
+  type Document,
+  type Collection,
+  type OptionalUnlessRequiredId,
+  MongoClient
+} from "mongodb"
 
-export class MongodbService {
-  private client!: MongoClient
-  private database!: Db
-  private collection!: Collection
+export class MongodbService<T extends Document> {
+  private collection!: Collection<T>
 
   private constructor(
     private mongodbUri: string,
@@ -12,30 +15,30 @@ export class MongodbService {
   ) {
   }
 
-  static async create(
+  static async create<T extends Document>(
     mongodbUri: string,
     dbName: string,
     collectionName: string,
-  ): Promise<MongodbService> {
-    const service = new MongodbService(
+  ) {
+    const service = new MongodbService<T>(
       mongodbUri,
       dbName,
       collectionName,
     )
 
-    service.client = new MongoClient(mongodbUri)
-    await service.client.connect()
-    service.database = service.client.db(dbName)
-    service.collection = service.database.collection(collectionName)
+    const client = new MongoClient(mongodbUri)
+    await client.connect()
+    const database = client.db(dbName)
+    service.collection = database.collection<T>(collectionName)
 
     return service
   }
 
-  async insertData(document: object) {
+  async insertData(document: OptionalUnlessRequiredId<T>) {
     await this.collection.insertOne(document)
   }
 
   async getLastDocument() {
-    return await this.collection.findOne({}, {sort: {_id: -1}})
+    return await this.collection.findOne({}, {sort: {_id: -1}, projection: {_id: 0}})
   }
 }
