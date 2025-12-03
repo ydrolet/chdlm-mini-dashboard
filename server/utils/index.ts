@@ -1,14 +1,13 @@
-import type {H3Event, EventHandler, EventHandlerRequest} from "h3"
-import {serverSupabaseServiceRole} from "#supabase/server"
+import type {EventHandler, EventHandlerRequest} from "h3"
 import {ChdlmInvolvementService} from "~~/server/services/chdlm-involvement"
 import {MailgunService} from "~~/server/services/mailgun"
 import {MongodbService} from "~~/server/services/mongodb"
-import type {TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-data"
+import {TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-data"
 
-export function createChdlmInvolvementService(event: H3Event) {
+export async function createChdlmInvolvementService() {
   const config = useRuntimeConfig()
   return new ChdlmInvolvementService(
-    serverSupabaseServiceRole(event),
+    await createTimesheetExtractedDataDbService(),
     new MailgunService(config.mailgunApiKey, config.mailgunDomainName)
   )
 }
@@ -19,6 +18,7 @@ export async function createTimesheetExtractedDataDbService() {
     config.mongodbUri,
     "google_sheets",
     "extracted_data",
+    TimesheetsExtractedData.schema(),
   )
 }
 

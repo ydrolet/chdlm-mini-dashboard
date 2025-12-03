@@ -4,7 +4,7 @@ import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~~/server/utils
 export default defineEventHandler<Promise<EmailedInvolvementSummaryRequestResult>>(async (event) => {
   const body = await readValidatedBody(event, b => EmailedInvolvementSummaryRequestSchema.parse(b))
 
-  const involvementService = createChdlmInvolvementService(event)
+  const involvementService = await createChdlmInvolvementService()
 
   try {
     const member = await involvementService.sendInvolvementSummaryEmail(

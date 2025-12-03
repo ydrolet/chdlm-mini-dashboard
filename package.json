@@ -7,14 +7,12 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "gen-supabase-types": "env-cmd -x -- supabase gen types typescript --project-id \\$SUPABASE_PROJECT_ID > shared/types/database.types.ts"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
     "@nuxt/fonts": "0.11.4",
     "@nuxtjs/device": "3.2.4",
-    "@nuxtjs/supabase": "2.0.1",
     "@primevue/forms": "4.4.1",
     "@primevue/nuxt-module": "4.4.1",
     "@primevue/themes": "4.4.1",
@@ -41,7 +39,6 @@
     "@types/node": "22.19.1",
     "@types/nunjucks": "3.2.4",
     "env-cmd": "10.1.0",
-    "supabase": "2.54.11",
     "typescript": "5.9.3",
     "vite": "7.1.12",
     "vite-plugin-eslint2": "5.0.4",

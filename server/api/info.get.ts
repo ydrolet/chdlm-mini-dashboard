@@ -1,8 +1,8 @@
 import {createChdlmInvolvementService} from "~~/server/utils"
 import {type Member, MemberStatus} from "#shared/types/dto/timesheets-extracted-data"
 
-export default defineEventHandler<Promise<Info>>(async (event) => {
-  const involvementService = createChdlmInvolvementService(event)
+export default defineEventHandler<Promise<Info>>(async () => {
+  const involvementService = await createChdlmInvolvementService()
 
   const timesheetsExtractedData = await involvementService.getTimesheetExtractedData()
   const membersInvolvementData = timesheetsExtractedData.data as Member[] // FIXME: Casting shouldn't be needed

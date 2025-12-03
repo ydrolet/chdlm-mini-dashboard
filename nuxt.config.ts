@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/eslint",
     "@primevue/nuxt-module",
-    "@nuxtjs/supabase",
     "@nuxt/fonts",
     "@nuxtjs/device",
   ],
@@ -119,10 +118,5 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-
-  supabase: {
-    redirect: false,
-    types: "#shared/types/database.types.ts"
   },
 })
