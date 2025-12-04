@@ -47,7 +47,7 @@ export class MongodbService<T extends Document> {
   }
 
   async getLastDocument() {
-    const document = await this.collection.findOne({}, {sort: {_id: -1}, projection: {_id: 0}})
+    const document = await this.collection.findOne({}, {sort: {"extractionInfo.timestamp": -1}, projection: {_id: 0}})
     return this.config.validationSchema.parse(document)
   }
 }
