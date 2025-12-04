@@ -91,23 +91,20 @@ function getEnvVars() {
   const userProps = PropertiesService.getUserProperties()
 
   const envVars = {
-    supabase: {
-      projectUrl: userProps.getProperty("supabaseProjectUrl"),
-      publicApiKey: userProps.getProperty("supabasePublicApiKey"),
-      miniDashboardServiceAccountJwt: userProps.getProperty("supabaseMiniDashboardServiceAccountJwt")
-    },
+    chdlmMiniDashboardUrl: userProps.getProperty("chdlmMiniDashboardUrl"),
+    chdlmMiniDashboardApiKey: userProps.getProperty("chdlmMiniDashboardApiKey"),
     mailApp: {
       toEmail: userProps.getProperty("mailAppToEmail"),
       fromName: userProps.getProperty("mailAppFromName")
     }
   }
 
-  if (envVars.supabase.projectUrl === null) {
-    throw "Supabase project URL must be correctly set."
+  if (envVars.chdlmMiniDashboardUrl === null) {
+    throw "CHDLM Mini Dashboard URL must be correctly set."
   }
 
-  if (envVars.supabase.publicApiKey === null || envVars.supabase.miniDashboardServiceAccountJwt === null) {
-    throw "Supabase tokens must be correctly set."
+  if (envVars.chdlmMiniDashboardApiKey === null) {
+    throw "CHDLM Mini Dashboard API key must be correctly set."
   }
 
   if (envVars.mailApp.toEmail === null) {

@@ -2,20 +2,19 @@ import {type EmailedInvolvementSummaryRequestResult, EmailedInvolvementSummaryRe
 import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~~/server/utils/errors"
 
 export default defineEventHandler<Promise<EmailedInvolvementSummaryRequestResult>>(async (event) => {
-  const result = await readValidatedBody(event, body => EmailedInvolvementSummaryRequestSchema.safeParse(body))
-  if (!result.success) throw createError({statusCode: 400, statusMessage: JSON.stringify(result.error.issues)})
+  const body = await readValidatedBody(event, b => EmailedInvolvementSummaryRequestSchema.parse(b))
 
-  const involvementService = createChdlmInvolvementService(event)
+  const involvementService = await createChdlmInvolvementService()
 
   try {
     const member = await involvementService.sendInvolvementSummaryEmail(
-      result.data.memberFullName,
-      result.data.precedingMonths
+      body.memberFullName,
+      body.precedingMonths
     )
 
     return {
       memberFullName: member.fullName,
-      precedingMonths: result.data.precedingMonths,
+      precedingMonths: body.precedingMonths,
       maskedEmailAddress: member.emailAddress && maskEmailAddress(member.emailAddress),
     }
   }

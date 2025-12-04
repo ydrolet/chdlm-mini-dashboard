@@ -30,7 +30,7 @@ class StoredLogger {
 }
 
 function extractInvolvementData(precedingYears = 2) {
-  const extractionTimestamp = new Date().toISOString()
+  const extractionTimestamp = new Date()
   const log = new StoredLogger()
 
   log.info("Data extraction started.")
@@ -52,8 +52,8 @@ function extractInvolvementData(precedingYears = 2) {
     const allInvolvementTimesheets = loadInvolvementTimesheets()
 
     t1 = new Date().getTime()
-    extractionDuration.spreadsheetLoading = (t1 - t0) / 1000
-    log.info(`All spreadsheets loaded in ${extractionDuration.spreadsheetLoading} seconds`)
+    extractionDuration.spreadsheetLoading = `PT${(t1 - t0) / 1000}S`
+    log.info(`All spreadsheets loading duration: ${extractionDuration.spreadsheetLoading}`)
 
     const currentYear = new Date().getFullYear()
 
@@ -192,14 +192,14 @@ function extractInvolvementData(precedingYears = 2) {
     data = null
   } finally {
     t2 = new Date().getTime()
-    extractionDuration.dataExtraction = (t2 - t1) / 1000
-    log.info(`Data extracted in ${extractionDuration.dataExtraction} seconds`)
+    extractionDuration.dataExtraction = `PT${(t2 - t1) / 1000}S`
+    log.info(`Data extraction duration: ${extractionDuration.dataExtraction}`)
   }
 
   return {
     data,
     timesheetsInfo: {
-      allCommitteesLastUpdated: objectMap(allInvolvementTimesheetsLastUpdated, d => d.toISOString()),
+      allCommitteesLastUpdated: allInvolvementTimesheetsLastUpdated,
       mostRecentUpdate: Object.values(allInvolvementTimesheetsLastUpdated).sort((a, b) => a - b).slice(-1)[0]
     },
     extractionInfo: {
@@ -218,14 +218,10 @@ function extractDataThenWriteToDatabase(onlyIfDataChanged = false) {
     console.info("Checking if data changed...")
     const currentMostRecentUpdate = Object.values(getInvolvementTimesheetsLastUpdated()).sort((a, b) => a - b).slice(-1)[0]
 
-    const response = UrlFetchApp.fetch(`${envVars.supabase.projectUrl}/rest/v1/google_sheets_extracted_data?select=extracted_data-%3EtimesheetsInfo&order=created_at.desc&limit=1`, {
+    const response = UrlFetchApp.fetch(`${envVars.chdlmMiniDashboardUrl}/api/data?apiKey=${envVars.chdlmMiniDashboardApiKey}`, {
       method: "get",
-      headers: {
-        apikey: envVars.supabase.publicApiKey,
-        Authorization: `Bearer ${envVars.supabase.miniDashboardServiceAccountJwt}`
-      }
     })
-    const timesheetsInfo = JSON.parse(response.getContentText(), dateReviver)[0].timesheetsInfo
+    const timesheetsInfo = JSON.parse(response.getContentText(), dateReviver).response.timesheetsInfo
     const storedMostRecentUpdate = timesheetsInfo.mostRecentUpdate
 
     if (storedMostRecentUpdate >= currentMostRecentUpdate) {
@@ -247,14 +243,10 @@ function extractDataThenWriteToDatabase(onlyIfDataChanged = false) {
     })
   }
 
-  UrlFetchApp.fetch(`${envVars.supabase.projectUrl}/rest/v1/google_sheets_extracted_data`, {
+  UrlFetchApp.fetch(`${envVars.chdlmMiniDashboardUrl}/api/data?apiKey=${envVars.chdlmMiniDashboardApiKey}`, {
     method: "post",
-    headers: {
-      apikey: envVars.supabase.publicApiKey,
-      Authorization: `Bearer ${envVars.supabase.miniDashboardServiceAccountJwt}`
-    },
     contentType: "application/json",
-    payload: JSON.stringify({ extracted_data: data })
+    payload: JSON.stringify(data)
   })
   console.info("Extracted data was written to the database")
 }

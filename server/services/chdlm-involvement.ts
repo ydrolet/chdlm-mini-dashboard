@@ -1,29 +1,24 @@
-import type {SupabaseClient} from "@supabase/supabase-js"
-import {humanizeAddress, type Member, TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-data"
+import type {MongodbService} from "~~/server/services/mongodb"
+import {humanizeAddress, type Member, type TimesheetsExtractedData} from "#shared/types/dto/timesheets-extracted-data"
 import nunjucks from "nunjucks"
 import mjml2html from "mjml"
 import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~~/server/utils/errors"
+
+export const timesheetsSortField = "extractionInfo.timestamp"
 
 export class ChdlmInvolvementService {
   private serverAssets = useStorage("assets:templates")
 
   constructor(
-    private db: SupabaseClient,
+    private db: MongodbService<TimesheetsExtractedData>,
     private mailer: MailService,
   ) {
   }
 
   async getTimesheetExtractedData(): Promise<TimesheetsExtractedData> {
     console.time("Loading of timesheets extracted data from database")
-    const {data} = await this.db.from("google_sheets_extracted_data")
-      .select("extracted_data")
-      .order("created_at", {ascending: false})
-      .limit(1)
+    const extractedInvolvementData = await this.db.getLastDocument(timesheetsSortField)
     console.timeEnd("Loading of timesheets extracted data from database")
-
-    console.time("Parsing of timesheets extracted data")
-    const extractedInvolvementData = TimesheetsExtractedData.parse(data?.[0]?.["extracted_data"])
-    console.timeEnd("Parsing of timesheets extracted data")
 
     return extractedInvolvementData
   }
