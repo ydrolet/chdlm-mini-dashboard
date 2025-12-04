@@ -4,8 +4,8 @@ import _ from "lodash"
 import customDayjs from "#shared/utils/custom-dayjs"
 import {type MonthlyInvolvement, Period} from "#shared/types/involvement"
 
-const dayjsSchema = z.string().datetime({offset: true}).transform(date => customDayjs(date).tz())
-const durationSchema = z.number().transform(secs => customDayjs.duration({seconds: secs}))
+const dayjsSchema = z.date().transform(date => customDayjs(date).tz())
+const durationSchema = z.string().duration().transform(isoDuration => customDayjs.duration(isoDuration))
 
 export enum LogLevel {
   Info = "info",

@@ -34,10 +34,10 @@ export class MongodbService<T extends Document> {
   private serializeDocument(document: OptionalUnlessRequiredId<T>) {
     return _.cloneDeepWith(document, (val) => {
       if (customDayjs.isDayjs(val)) {
-        return val.toISOString()
+        return val.toDate()
       }
       else if (customDayjs.isDuration(val)) {
-        return val.asSeconds()
+        return val.toISOString()
       }
     })
   }
