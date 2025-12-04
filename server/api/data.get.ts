@@ -1,5 +1,6 @@
 import {createTimesheetExtractedDataDbService, defineEventHandlerWithAuth} from "~~/server/utils"
 
 export default defineEventHandlerWithAuth(async () => {
-  return (await createTimesheetExtractedDataDbService()).getLastDocument()
+  const dbService = await createTimesheetExtractedDataDbService()
+  return await dbService.getLastDocument()
 })

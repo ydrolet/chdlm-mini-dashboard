@@ -8,34 +8,25 @@ import type {ZodType} from "zod"
 import _ from "lodash"
 import customDayjs from "#shared/utils/custom-dayjs"
 
+type MongodbServiceConfig<T extends Document> = {
+  mongodbUri: string
+  dbName: string
+  collectionName: string
+  validationSchema: ZodType<T>
+}
+
 export class MongodbService<T extends Document> {
   private collection!: Collection<T>
 
-  private constructor(
-    private mongodbUri: string,
-    private dbName: string,
-    private collectionName: string,
-    private validator: ZodType<T>,
-  ) {
-  }
+  private constructor(private config: MongodbServiceConfig<T>) {}
 
-  static async create<T extends Document>(
-    mongodbUri: string,
-    dbName: string,
-    collectionName: string,
-    validator: ZodType<T>,
-  ) {
-    const service = new MongodbService<T>(
-      mongodbUri,
-      dbName,
-      collectionName,
-      validator,
-    )
+  static async create<T extends Document>(config: MongodbServiceConfig<T>) {
+    const service = new MongodbService<T>(config)
 
-    const client = new MongoClient(mongodbUri)
+    const client = new MongoClient(config.mongodbUri)
     await client.connect()
-    const database = client.db(dbName)
-    service.collection = database.collection<T>(collectionName)
+    const database = client.db(config.dbName)
+    service.collection = database.collection<T>(config.collectionName)
 
     return service
   }
@@ -57,6 +48,6 @@ export class MongodbService<T extends Document> {
 
   async getLastDocument() {
     const document = await this.collection.findOne({}, {sort: {_id: -1}, projection: {_id: 0}})
-    return this.validator.parse(document)
+    return this.config.validationSchema.parse(document)
   }
 }

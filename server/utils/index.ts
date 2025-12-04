@@ -14,12 +14,12 @@ export async function createChdlmInvolvementService() {
 
 export async function createTimesheetExtractedDataDbService() {
   const config = useRuntimeConfig()
-  return await MongodbService.create<TimesheetsExtractedData>(
-    config.mongodbUri,
-    "google_sheets",
-    "extracted_data",
-    TimesheetsExtractedData.schema(),
-  )
+  return await MongodbService.create({
+    mongodbUri: config.mongodbUri,
+    dbName: "google_sheets",
+    collectionName: "extracted_data",
+    validationSchema: TimesheetsExtractedData.schema(),
+  })
 }
 
 export function defineEventHandlerWithAuth<T extends EventHandlerRequest, D>(
