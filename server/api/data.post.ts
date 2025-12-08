@@ -3,5 +3,6 @@ import {createTimesheetExtractedDataDbService, defineEventHandlerWithAuth} from 
 
 export default defineEventHandlerWithAuth(async (event) => {
   const body = await readValidatedBody(event, b => TimesheetsExtractedData.parse(b))
-  await (await createTimesheetExtractedDataDbService()).insertData(body)
+  const dbService = await createTimesheetExtractedDataDbService()
+  await dbService.insertData(body)
 })

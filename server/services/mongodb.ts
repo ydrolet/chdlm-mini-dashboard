@@ -46,8 +46,8 @@ export class MongodbService<T extends Document> {
     await this.collection.insertOne(this.serializeDocument(document))
   }
 
-  async getLastDocument() {
-    const document = await this.collection.findOne({}, {sort: {"extractionInfo.timestamp": -1}, projection: {_id: 0}})
+  async getLastDocument(sortField: string) {
+    const document = await this.collection.findOne({}, {sort: {[sortField]: -1}, projection: {_id: 0}})
     return this.config.validationSchema.parse(document)
   }
 }

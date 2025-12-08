@@ -4,6 +4,8 @@ import nunjucks from "nunjucks"
 import mjml2html from "mjml"
 import {EmailSendingError, MemberNotFound, NoEmailAddress} from "~~/server/utils/errors"
 
+export const timesheetsSortField = "extractionInfo.timestamp"
+
 export class ChdlmInvolvementService {
   private serverAssets = useStorage("assets:templates")
 
@@ -15,7 +17,7 @@ export class ChdlmInvolvementService {
 
   async getTimesheetExtractedData(): Promise<TimesheetsExtractedData> {
     console.time("Loading of timesheets extracted data from database")
-    const extractedInvolvementData = await this.db.getLastDocument()
+    const extractedInvolvementData = await this.db.getLastDocument(timesheetsSortField)
     console.timeEnd("Loading of timesheets extracted data from database")
 
     return extractedInvolvementData
