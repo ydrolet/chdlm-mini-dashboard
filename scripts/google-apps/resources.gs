@@ -96,7 +96,7 @@ function getEnvVars() {
     mailApp: {
       toEmail: userProps.getProperty("mailAppToEmail"),
       fromName: userProps.getProperty("mailAppFromName")
-    },
+    }
   }
 
   if (envVars.chdlmMiniDashboardUrl === null) {
