@@ -15,6 +15,19 @@ type MongodbServiceConfig<T extends Document> = {
   validationSchema: ZodType<T>
 }
 
+let mongoClient: Promise<MongoClient> | undefined
+
+function getClient(mongodbUri: string) {
+  if (!mongoClient) {
+    mongoClient = new MongoClient(mongodbUri, {maxPoolSize: 10}).connect()
+      .catch((error) => {
+        mongoClient = undefined // Don't cache the failure, so the next request retries
+        throw error
+      })
+  }
+  return mongoClient
+}
+
 export class MongodbService<T extends Document> {
   private collection!: Collection<T>
 
@@ -23,8 +36,7 @@ export class MongodbService<T extends Document> {
   static async create<T extends Document>(config: MongodbServiceConfig<T>) {
     const service = new MongodbService<T>(config)
 
-    const client = new MongoClient(config.mongodbUri)
-    await client.connect()
+    const client = await getClient(config.mongodbUri)
     const database = client.db(config.dbName)
     service.collection = database.collection<T>(config.collectionName)
 
